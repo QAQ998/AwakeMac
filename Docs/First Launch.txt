@@ -1,0 +1,17 @@
+AwakeMac 首次打开
+
+1. 将 AwakeMac.app 拖入右侧的 Applications 文件夹。
+2. 第一次启动时，请在“应用程序”中右键点击 AwakeMac，选择“打开”，再确认一次。
+3. 普通保持唤醒不需要管理员权限；首次开启“合盖仍保持运行”时需要管理员授权安装安全助手。
+
+本版本为公开源码构建，尚未使用 Developer ID 完成 Apple 公证，因此首次打开需要手动确认。
+
+---
+
+First Launch
+
+1. Drag AwakeMac.app to the Applications folder.
+2. On first launch, Control-click AwakeMac in Applications, choose Open, and confirm once.
+3. Normal wake mode needs no administrator access. Closed-lid mode asks for administrator authorization once to install its safety helper.
+
+This open-source build is not yet notarized with an Apple Developer ID, so macOS requires the one-time manual confirmation above.

@@ -1,92 +1,56 @@
 # AwakeMac / 醒着
 
-AwakeMac is a native macOS 14–26 menu bar utility that keeps the display and system awake without changing the user's original idle-sleep timers. It includes an interactive desktop widget, system-language Chinese/English UI, hardware capability detection, countdowns, a low-brightness quick-break session, and an experimental closed-lid helper with fail-safe leases. Release builds are Universal 2 and run natively on Apple Silicon and Intel Macs.
+AwakeMac（醒着）是一款原生 macOS 菜单栏小工具，用来阻止电脑自动息屏和空闲睡眠。关闭保持唤醒后，电脑会继续使用原来的系统睡眠设置。
 
-The direct-launch build opens a compact native control window when double-clicked and also remains available from the menu bar. Closing the control window does not quit the utility; double-clicking the app again restores the window.
+[下载最新正式版](https://github.com/QAQ998/AwakeMac/releases/latest)
 
-Version 1.2.6 refines the Quick Break experience and fixes local-helper packaging:
+## 主要功能
 
-- All semantic text styles render one system size larger while continuing to respect the user's accessibility text-size preference.
-- Duration uses common presets and brightness uses a native slider with familiar sun controls.
-- Quick Break temporarily replaces the current session, lowers supported displays to one of the system's full 64 brightness steps, and restores brightness when the session ends. The lowest system step is the default for new and upgraded installations and is presented as 1%; steps 2–64 use the rounded `step / 64 × 100` value. Settings keeps all 64 selectable values while drawing only ten visual scale marks. Its default copy style is the neutral “Step Away / 离开一会”; “Field Research / 水产调研” and “Cyber Cover / 赛博托管” remain optional. Hover the info icons in Settings for in-app explanations.
-- Hardware settings use a readable Apple product name and no longer expose raw IOKit diagnostics.
-- App Link is temporarily hidden while its interaction is refined. A previously enabled App Link preference is disabled on launch so no invisible automation remains active.
-- Local release packaging now signs the embedded PowerHelper explicitly before sealing the widget and app, preventing first-use helper installation from being rejected as unsigned.
+- 无限期或按指定时长保持唤醒
+- “离开一会”：保持唤醒、临时降低屏幕亮度，结束后自动恢复
+- 实验性的合盖运行模式，包含安全租约、低电量和温度保护
+- 自动识别 MacBook 与无盖桌面 Mac
+- 菜单栏控制和桌面小组件
+- 简体中文与英文界面
+- Universal 2，同时支持 Apple Silicon 和 Intel Mac
 
-## Open and build
+## 安装
 
-Runtime support: macOS 14 through macOS 26. This checkout is built with Swift 6, Xcode 26.4, and XcodeGen 2.46 or later; all targets use a macOS 14 deployment target.
+1. 从 [Releases](https://github.com/QAQ998/AwakeMac/releases/latest) 下载 DMG。
+2. 打开 DMG，将 `AwakeMac.app` 拖入“应用程序”。
+3. 首次启动时，在“应用程序”中右键 AwakeMac，选择“打开”，再确认一次。
+
+当前公开版本尚未使用 Developer ID 完成 Apple 公证，因此首次打开需要手动确认。普通保持唤醒不需要管理员权限；首次使用“合盖仍保持运行”时，系统会要求管理员授权安装安全助手。
+
+系统要求：macOS 14 或更高版本。
+
+## 从源码构建
+
+需要 Swift 6、Xcode 26.4 和 XcodeGen：
 
 ```bash
-cd /path/to/AwakeMac
 xcodegen generate
 open AwakeMac.xcodeproj
 ```
 
-For a compile-only unsigned verification:
+---
 
-```bash
-zsh Scripts/build-debug.sh
-```
+## English
 
-The script writes build products to `.derivedData` inside the project.
+AwakeMac is a native macOS menu bar utility that prevents idle display and system sleep without changing your original Energy settings. Turning it off restores normal system behavior.
 
-After an unsigned Release build, create a locally runnable ad-hoc signed bundle with:
+Features include timed or unlimited wake sessions, a low-brightness “Step Away” mode, an experimental fail-safe closed-lid mode, desktop widgets, hardware capability detection, Chinese and English UI, and Universal 2 support for Apple Silicon and Intel Macs.
 
-```bash
-zsh Scripts/sign-local-app.sh .derivedData/Build/Products/Release/AwakeMac.app
-```
+### Install
 
-The signing script verifies the standalone PowerHelper as well as the complete app bundle before returning success.
+1. Download the DMG from [Releases](https://github.com/QAQ998/AwakeMac/releases/latest).
+2. Drag `AwakeMac.app` to Applications.
+3. On first launch, Control-click AwakeMac in Applications, choose Open, and confirm once.
 
-## Direct local use
+This open-source build is not yet notarized with an Apple Developer ID. Normal wake mode requires no administrator access; closed-lid mode requests administrator authorization once to install its safety helper.
 
-1. Open `AwakeMac.app` and turn on normal Stay Awake mode.
-2. Turn on “Stay awake with lid closed” and accept the safety warning.
-3. On first use, macOS asks once for an administrator password. AwakeMac installs its local helper into `/Library/PrivilegedHelperTools` and `/Library/LaunchDaemons`.
-4. The local build does not use the “Allow in the Background” list. After installation, the lid control becomes available immediately.
+Requires macOS 14 or later.
 
-The installer pairs the root helper with the exact code requirement of the current app build. If the app binary changes, AwakeMac reports “Update required” and requests administrator authorization once to update that pairing.
+## License
 
-## Signing for development
-
-1. Open `AwakeMac.xcodeproj` in Xcode.
-2. Select the `AwakeMac` and `AwakeMacWidget` targets and choose a valid Personal Team under Signing & Capabilities.
-3. Ensure both targets contain the App Group `group.com.zhuhai.AwakeMac`. If Xcode requires a unique identifier, change the bundle identifiers and App Group consistently in `project.yml`, entitlements, and `SharedStateStore.swift`, then regenerate the project.
-4. Build and copy `AwakeMac.app` to a stable location before installing the privileged helper.
-5. Launch AwakeMac. The normal wake mode and timers work without the helper.
-
-## Experimental closed-lid helper
-
-- Closed-lid mode is shown only when the public IOKit `AppleClamshellState` property is present. Desktop Macs and failed capability queries remain disabled.
-- The personal local build installs `PowerHelper` with an administrator-authorized installer. It uses fixed root-owned paths and never accepts a caller that does not match the paired app code requirement.
-- The helper accepts only the fixed `pmset -a disablesleep 1/0` operation. It uses a 90-second lease renewed every 30 seconds and restores lid sleep after a crash, timeout, restart marker, low battery, or thermal pressure.
-- A future distributed build should use Developer ID signing, notarization, and `SMAppService`. The local installer exists only for this personal-machine build. Normal wake mode and widgets do not depend on it.
-- Do not place a closed, awake MacBook in a bag. The 20% battery and thermal guards are intentionally not configurable.
-
-## Verification
-
-```bash
-xcodebuild -project AwakeMac.xcodeproj -scheme AwakeMac -destination 'platform=macOS,arch=arm64' -derivedDataPath .derivedData CODE_SIGNING_ALLOWED=NO build
-xcodebuild -project AwakeMac.xcodeproj -scheme AwakeMac -destination 'platform=macOS,arch=arm64' -derivedDataPath .derivedData CODE_SIGNING_ALLOWED=NO test
-pmset -g assertions
-pmset -g custom
-```
-
-The UI prototype is available at `Prototype/AwakeMac UI Prototype.html`; it can simulate language, appearance, MacBook/Mac mini capability, timers, widgets, and the first-use safety warning.
-
-## License and copyright
-
-Copyright © 2026 QAQ998. AwakeMac is released under the [MIT License](LICENSE). Reuse and modification are allowed, but the copyright and license notice must be preserved in copies or substantial portions of the software.
-
-## Safety and uninstall
-
-Use Settings → Safety → Remove Helper before deleting the app. Removal restores `disablesleep 0` before unloading the daemon.
-
-If the app was deleted unexpectedly, first restore lid sleep:
-
-```bash
-sudo pmset -a disablesleep 0
-```
-
-Then remove only these fixed local-helper files and unload `system/com.zhuhai.AwakeMac.PowerHelper`; the app’s bundled installer performs those steps automatically when available.
+Copyright © 2026 QAQ998. Released under the [MIT License](LICENSE).
