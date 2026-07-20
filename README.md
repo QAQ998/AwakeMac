@@ -4,11 +4,12 @@ AwakeMac is a native macOS 14–26 menu bar utility that keeps the display and s
 
 The direct-launch build opens a compact native control window when double-clicked and also remains available from the menu bar. Closing the control window does not quit the utility; double-clicking the app again restores the window.
 
-Version 1.2.2 refines the Quick Break experience and fixes local-helper packaging:
+Version 1.2.3 refines the Quick Break experience and fixes local-helper packaging:
 
 - All semantic text styles render one system size larger while continuing to respect the user's accessibility text-size preference.
 - Duration uses common presets and brightness uses a native slider with familiar sun controls.
-- Quick Break temporarily replaces the current session, lowers supported displays to a configured 1/64–64/64 brightness step, and restores brightness when the session ends. Its UI copy can switch between “Field Research / 水产调研” and “Cyber Cover / 赛博托管”. Hover the info icon in Settings for an in-app explanation.
+- Quick Break temporarily replaces the current session, lowers supported displays to one of ten brightness levels, and restores brightness when the session ends. Its default copy style is the neutral “Step Away / 离开一会”; “Field Research / 水产调研” and “Cyber Cover / 赛博托管” remain optional. Hover the info icons in Settings for in-app explanations.
+- Hardware settings use a readable Apple product name and no longer expose raw IOKit diagnostics.
 - App Link is temporarily hidden while its interaction is refined. A previously enabled App Link preference is disabled on launch so no invisible automation remains active.
 - Local release packaging now signs the embedded PowerHelper explicitly before sealing the widget and app, preventing first-use helper installation from being rejected as unsigned.
 

@@ -40,4 +40,20 @@ final class WakeModelsTests: XCTestCase {
         XCTAssertEqual(state.appAutomation, AppAutomationSettings())
         XCTAssertEqual(state.quickAway, QuickAwaySettings())
     }
+
+    func testQuickAwayDefaultsToNeutralCopyAndTenPercentBrightness() {
+        let settings = QuickAwaySettings()
+
+        XCTAssertEqual(settings.copyStyle, .briefAway)
+        XCTAssertEqual(settings.brightnessLevel, 1)
+        XCTAssertEqual(settings.brightnessPercent, 10)
+    }
+
+    func testQuickAwayBrightnessUsesTenDiscreteLevels() {
+        var settings = QuickAwaySettings()
+        settings.setBrightnessLevel(10)
+
+        XCTAssertEqual(settings.brightnessStep, 64)
+        XCTAssertEqual(settings.brightnessPercent, 100)
+    }
 }

@@ -36,6 +36,7 @@ final class WakeController: NSObject, ObservableObject {
     private let notificationObservations = NotificationObservationBag()
     private var hasStarted = false
     private static let loginItemConfiguredKey = "didConfigureLoginItem"
+    private static let briefAwayDefaultMigrationKey = "didMigrateQuickAwayDefaultToBriefAway"
 
     init(
         store: SharedStateStore = SharedStateStore(),
@@ -59,6 +60,10 @@ final class WakeController: NSObject, ObservableObject {
         super.init()
         self.state.language = .systemDefault
         self.state.hardwareHasClamshell = self.capabilities.hasClamshell
+        if !preferences.bool(forKey: Self.briefAwayDefaultMigrationKey) {
+            self.state.quickAway.copyStyle = .briefAway
+            preferences.set(true, forKey: Self.briefAwayDefaultMigrationKey)
+        }
     }
 
     func start() {
@@ -323,6 +328,12 @@ final class WakeController: NSObject, ObservableObject {
 
     func setQuickAwayBrightness(step: Int) {
         state.quickAway.brightnessStep = min(64, max(1, step))
+        state.quickAway.clamp()
+        persistAndRefresh()
+    }
+
+    func setQuickAwayBrightnessLevel(_ level: Int) {
+        state.quickAway.setBrightnessLevel(level)
         persistAndRefresh()
     }
 
@@ -494,9 +505,7 @@ final class WakeController: NSObject, ObservableObject {
             return appAutomationStatusText
         }
         if state.sessionSource == .quickAway {
-            let prefixKey = state.quickAway.copyStyle == .aquaticResearch
-                ? "quickAway.aquatic.active"
-                : "quickAway.cyber.active"
+            let prefixKey = "quickAway.\(state.quickAway.copyStyle.localizationKeySegment).active"
             let status = L10n.text(prefixKey, language: state.language)
             guard let endAt = state.endAt else { return status }
             let minutes = max(1, Int(ceil(endAt.timeIntervalSince(now) / 60)))
@@ -544,15 +553,11 @@ final class WakeController: NSObject, ObservableObject {
                 stopAll(suppressAutomationForCurrentRun: false)
                 NotificationService.post(
                     title: L10n.text(
-                        style == .aquaticResearch
-                            ? "quickAway.aquatic.notificationTitle"
-                            : "quickAway.cyber.notificationTitle",
+                        "quickAway.\(style.localizationKeySegment).notificationTitle",
                         language: state.language
                     ),
                     body: L10n.text(
-                        style == .aquaticResearch
-                            ? "quickAway.aquatic.notificationBody"
-                            : "quickAway.cyber.notificationBody",
+                        "quickAway.\(style.localizationKeySegment).notificationBody",
                         language: state.language
                     )
                 )

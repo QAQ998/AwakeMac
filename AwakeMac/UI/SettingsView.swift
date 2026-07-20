@@ -91,21 +91,32 @@ struct SettingsView: View {
     private var safetyTab: some View {
         Form {
             Section(L10n.text("settings.hardware", language: language)) {
-                LabeledContent(L10n.text("settings.model", language: language), value: controller.capabilities.modelIdentifier)
+                LabeledContent(
+                    L10n.text("settings.model", language: language),
+                    value: controller.capabilities.modelDisplayName
+                )
                 LabeledContent(
                     L10n.text("settings.lidCapability", language: language),
                     value: controller.capabilities.hasClamshell
                         ? L10n.text("common.supported", language: language)
                         : L10n.text("common.unavailable", language: language)
                 )
-                Text(controller.capabilities.diagnostic)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .textSelection(.enabled)
             }
 
             Section(L10n.text("settings.protection", language: language)) {
-                LabeledContent(L10n.text("settings.helper", language: language), value: helperStatusText)
+                LabeledContent {
+                    Text(helperStatusText)
+                } label: {
+                    HStack(spacing: 5) {
+                        Text(L10n.text("settings.helper", language: language))
+                        Image(systemName: "info.circle")
+                            .foregroundStyle(.secondary)
+                            .help(L10n.text("helper.introduction", language: language))
+                            .accessibilityLabel(
+                                L10n.text("helper.introduction", language: language)
+                            )
+                    }
+                }
                 HStack {
                     Button(helperInstallButtonTitle) {
                         Task { _ = await controller.installLocalHelper() }
@@ -126,7 +137,7 @@ struct SettingsView: View {
             }
 
             Text(L10n.text("settings.experimentalNotice", language: language))
-                .font(.caption)
+                .font(.callout)
                 .foregroundStyle(.secondary)
         }
         .formStyle(.grouped)
@@ -142,6 +153,8 @@ struct SettingsView: View {
                         set: { controller.setQuickAwayCopyStyle($0) }
                     )
                 ) {
+                    Text(L10n.text("quickAway.style.brief", language: language))
+                        .tag(QuickAwayCopyStyle.briefAway)
                     Text(L10n.text("quickAway.style.aquatic", language: language))
                         .tag(QuickAwayCopyStyle.aquaticResearch)
                     Text(L10n.text("quickAway.style.cyber", language: language))
@@ -167,10 +180,10 @@ struct SettingsView: View {
                             .accessibilityHidden(true)
                         Slider(
                             value: Binding(
-                                get: { Double(controller.state.quickAway.brightnessStep) },
-                                set: { controller.setQuickAwayBrightness(step: Int($0.rounded())) }
+                                get: { Double(controller.state.quickAway.brightnessLevel) },
+                                set: { controller.setQuickAwayBrightnessLevel(Int($0.rounded())) }
                             ),
-                            in: 1...64,
+                            in: 1...10,
                             step: 1
                         )
                         .frame(minWidth: 150, idealWidth: 210, maxWidth: 260)
@@ -178,7 +191,7 @@ struct SettingsView: View {
                         Image(systemName: "sun.max.fill")
                             .foregroundStyle(.secondary)
                             .accessibilityHidden(true)
-                        Text("\(controller.state.quickAway.brightnessStep)/64")
+                        Text("\(controller.state.quickAway.brightnessPercent)%")
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
                             .frame(width: 42, alignment: .trailing)
@@ -186,7 +199,7 @@ struct SettingsView: View {
                 }
 
                 Text(L10n.text("quickAway.settings.detail", language: language))
-                    .font(.caption)
+                    .font(.callout)
                     .foregroundStyle(.secondary)
             } header: {
                 HStack(spacing: 5) {

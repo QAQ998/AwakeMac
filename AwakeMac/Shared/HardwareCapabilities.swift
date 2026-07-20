@@ -16,6 +16,27 @@ struct HardwareCapabilities: Equatable, Sendable {
         return false
     }
 
+    var modelDisplayName: String {
+        switch modelIdentifier {
+        case "MacBookAir10,1":
+            return "MacBook Air (M1, 2020)"
+        case "MacBookPro17,1":
+            return "MacBook Pro (13-inch, M1, 2020)"
+        case "Macmini9,1":
+            return "Mac mini (M1, 2020)"
+        default:
+            if modelIdentifier.hasPrefix("MacBookAir") { return "MacBook Air" }
+            if modelIdentifier.hasPrefix("MacBookPro") { return "MacBook Pro" }
+            if modelIdentifier.hasPrefix("MacBook") { return "MacBook" }
+            if modelIdentifier.hasPrefix("Macmini") { return "Mac mini" }
+            if modelIdentifier.hasPrefix("MacStudio") { return "Mac Studio" }
+            if modelIdentifier.hasPrefix("MacPro") { return "Mac Pro" }
+            if modelIdentifier.hasPrefix("iMacPro") { return "iMac Pro" }
+            if modelIdentifier.hasPrefix("iMac") { return "iMac" }
+            return modelIdentifier
+        }
+    }
+
     var diagnostic: String {
         switch clamshell {
         case .supported(let isClosed): "\(modelIdentifier): clamshell present, closed=\(isClosed)"

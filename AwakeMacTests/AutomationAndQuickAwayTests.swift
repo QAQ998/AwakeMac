@@ -76,7 +76,7 @@ final class AutomationAndQuickAwayTests: XCTestCase {
         fixture.controller.startQuickAway()
 
         XCTAssertEqual(fixture.controller.state.sessionSource, .quickAway)
-        XCTAssertEqual(fixture.brightness.lastAppliedStep, 1)
+        XCTAssertEqual(fixture.brightness.lastAppliedStep, 7)
         XCTAssertEqual(fixture.brightness.applyCount, 1)
 
         fixture.controller.endQuickAway()
@@ -94,7 +94,8 @@ final class AutomationAndQuickAwayTests: XCTestCase {
         fixture.controller.setQuickAwayCopyStyle(.cyberCare)
 
         XCTAssertEqual(fixture.controller.state.quickAway.durationMinutes, 240)
-        XCTAssertEqual(fixture.controller.state.quickAway.brightnessStep, 1)
+        XCTAssertEqual(fixture.controller.state.quickAway.brightnessStep, 7)
+        XCTAssertEqual(fixture.controller.state.quickAway.brightnessPercent, 10)
         XCTAssertEqual(fixture.controller.state.quickAway.copyStyle, .cyberCare)
     }
 

@@ -229,7 +229,7 @@ struct MenuBarContentView: View {
 
     private var quickAwayRow: some View {
         HStack(spacing: 10) {
-            Image(systemName: controller.state.quickAway.copyStyle == .aquaticResearch ? "fish.fill" : "person.crop.circle.badge.clock")
+            Image(systemName: quickAwaySymbolName)
                 .foregroundStyle(controller.state.sessionSource == .quickAway ? Color.accentColor : Color.secondary)
                 .frame(width: 18)
 
@@ -488,16 +488,12 @@ struct MenuBarContentView: View {
     private var quickAwayRowTitle: String {
         if controller.state.sessionSource == .quickAway {
             return L10n.text(
-                controller.state.quickAway.copyStyle == .aquaticResearch
-                    ? "quickAway.aquatic.active"
-                    : "quickAway.cyber.active",
+                quickAwayTextKey("active"),
                 language: language
             )
         }
         return L10n.text(
-            controller.state.quickAway.copyStyle == .aquaticResearch
-                ? "quickAway.aquatic.start"
-                : "quickAway.cyber.start",
+            quickAwayTextKey("start"),
             language: language
         )
     }
@@ -509,7 +505,7 @@ struct MenuBarContentView: View {
         return String(
             format: L10n.text("quickAway.defaultDetail", language: language),
             controller.state.quickAway.durationMinutes,
-            controller.state.quickAway.brightnessStep
+            controller.state.quickAway.brightnessPercent
         )
     }
 
@@ -519,18 +515,14 @@ struct MenuBarContentView: View {
 
     private var quickAwayReturnTitle: String {
         L10n.text(
-            controller.state.quickAway.copyStyle == .aquaticResearch
-                ? "quickAway.aquatic.return"
-                : "quickAway.cyber.return",
+            quickAwayTextKey("return"),
             language: language
         )
     }
 
     private var quickAwayConfirmationTitle: String {
         L10n.text(
-            controller.state.quickAway.copyStyle == .aquaticResearch
-                ? "quickAway.aquatic.confirmTitle"
-                : "quickAway.cyber.confirmTitle",
+            quickAwayTextKey("confirmTitle"),
             language: language
         )
     }
@@ -538,32 +530,38 @@ struct MenuBarContentView: View {
     private var quickAwayConfirmationBody: String {
         String(
             format: L10n.text(
-                controller.state.quickAway.copyStyle == .aquaticResearch
-                    ? "quickAway.aquatic.confirmBody"
-                    : "quickAway.cyber.confirmBody",
+                quickAwayTextKey("confirmBody"),
                 language: language
             ),
             controller.state.quickAway.durationMinutes,
-            controller.state.quickAway.brightnessStep
+            controller.state.quickAway.brightnessPercent
         )
     }
 
     private var quickAwayConfirmTitle: String {
         L10n.text(
-            controller.state.quickAway.copyStyle == .aquaticResearch
-                ? "quickAway.aquatic.confirm"
-                : "quickAway.cyber.confirm",
+            quickAwayTextKey("confirm"),
             language: language
         )
     }
 
     private var quickAwayCancelTitle: String {
         L10n.text(
-            controller.state.quickAway.copyStyle == .aquaticResearch
-                ? "quickAway.aquatic.cancel"
-                : "quickAway.cyber.cancel",
+            quickAwayTextKey("cancel"),
             language: language
         )
+    }
+
+    private var quickAwaySymbolName: String {
+        switch controller.state.quickAway.copyStyle {
+        case .briefAway: "figure.walk.departure"
+        case .aquaticResearch: "fish.fill"
+        case .cyberCare: "person.crop.circle.badge.clock"
+        }
+    }
+
+    private func quickAwayTextKey(_ suffix: String) -> String {
+        "quickAway.\(controller.state.quickAway.copyStyle.localizationKeySegment).\(suffix)"
     }
 }
 

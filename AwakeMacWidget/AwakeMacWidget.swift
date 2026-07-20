@@ -165,9 +165,7 @@ private struct AwakeWidgetView: View {
             )
         case .quickAway:
             return L10n.text(
-                entry.state.quickAway.copyStyle == .aquaticResearch
-                    ? "widget.quickAway.aquatic"
-                    : "widget.quickAway.cyber",
+                "widget.quickAway.\(entry.state.quickAway.copyStyle.localizationKeySegment)",
                 language: language
             )
         }

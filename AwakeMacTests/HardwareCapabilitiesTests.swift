@@ -13,6 +13,7 @@ final class HardwareCapabilitiesTests: XCTestCase {
         let capabilities = detector.detect()
         XCTAssertTrue(capabilities.hasClamshell)
         XCTAssertEqual(capabilities.clamshell, .supported(isClosed: false))
+        XCTAssertEqual(capabilities.modelDisplayName, "MacBook Air (M1, 2020)")
     }
 
     func testDesktopHardwareIsDisabledWhenClamshellPropertyIsAbsent() {
@@ -23,6 +24,7 @@ final class HardwareCapabilitiesTests: XCTestCase {
         let capabilities = detector.detect()
         XCTAssertFalse(capabilities.hasClamshell)
         XCTAssertEqual(capabilities.clamshell, .unavailable)
+        XCTAssertEqual(capabilities.modelDisplayName, "Mac mini (M1, 2020)")
     }
 
     func testQueryFailureFailsClosed() {
@@ -35,4 +37,3 @@ final class HardwareCapabilitiesTests: XCTestCase {
         XCTAssertEqual(capabilities.clamshell, .queryFailed)
     }
 }
-
