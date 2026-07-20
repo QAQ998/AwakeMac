@@ -1,0 +1,131 @@
+name: AwakeMac
+options:
+  bundleIdPrefix: com.zhuhai
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "26.4"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    CURRENT_PROJECT_VERSION: "12"
+    MARKETING_VERSION: "1.2.1"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+  configs:
+    Release:
+      ARCHS: "arm64 x86_64"
+      ONLY_ACTIVE_ARCH: NO
+configs:
+  Debug: debug
+  Release: release
+targets:
+  AwakeMac:
+    type: application
+    platform: macOS
+    sources:
+      - path: AwakeMac
+    resources:
+      - path: AwakeMac/Resources/Localizable.xcstrings
+      - path: AwakeMac/Resources/Assets.xcassets
+      - path: AwakeMac/Resources/LocalHelper
+    info:
+      path: AwakeMac/Info.plist
+      properties:
+        CFBundleDisplayName: AwakeMac
+        CFBundleName: AwakeMac
+        CFBundleShortVersionString: "1.2.1"
+        CFBundleVersion: "12"
+        LSUIElement: true
+        NSHumanReadableCopyright: "Copyright © 2026 QAQ998"
+    entitlements:
+      path: AwakeMac/AwakeMac.entitlements
+    dependencies:
+      - target: PowerHelper
+        embed: false
+      - target: AwakeMacWidget
+        embed: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zhuhai.AwakeMac
+        PRODUCT_NAME: AwakeMac
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    postBuildScripts:
+      - name: Embed PowerHelper
+        script: |
+          set -e
+          HELPER_DIR="$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH/Library/LaunchDaemons"
+          mkdir -p "$HELPER_DIR"
+          ditto "$BUILT_PRODUCTS_DIR/PowerHelper" "$HELPER_DIR/PowerHelper"
+          ditto "$SRCROOT/PowerHelper/com.zhuhai.AwakeMac.PowerHelper.plist" "$HELPER_DIR/com.zhuhai.AwakeMac.PowerHelper.plist"
+        inputFiles:
+          - $(BUILT_PRODUCTS_DIR)/PowerHelper
+          - $(SRCROOT)/PowerHelper/com.zhuhai.AwakeMac.PowerHelper.plist
+        outputFiles:
+          - $(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Library/LaunchDaemons/PowerHelper
+          - $(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Library/LaunchDaemons/com.zhuhai.AwakeMac.PowerHelper.plist
+  AwakeMacWidget:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: AwakeMacWidget
+      - path: AwakeMac/Shared/AppLanguage.swift
+      - path: AwakeMac/Shared/WakeModels.swift
+      - path: AwakeMac/Shared/SharedStateStore.swift
+      - path: AwakeMac/Shared/L10n.swift
+    resources:
+      - path: AwakeMacWidget/Localizable.xcstrings
+    info:
+      path: AwakeMacWidget/Info.plist
+      properties:
+        CFBundleDisplayName: AwakeMac Widget
+        CFBundleShortVersionString: "1.2.1"
+        CFBundleVersion: "12"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: AwakeMacWidget/AwakeMacWidget.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zhuhai.AwakeMac.Widget
+        PRODUCT_NAME: AwakeMacWidget
+        SKIP_INSTALL: YES
+  PowerHelper:
+    type: tool
+    platform: macOS
+    sources:
+      - path: PowerHelper
+      - path: AwakeMac/Shared/PowerHelperProtocol.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zhuhai.AwakeMac.PowerHelper
+        PRODUCT_NAME: PowerHelper
+        SKIP_INSTALL: YES
+  AwakeMacTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: AwakeMacTests
+      - path: AwakeMac/Shared/AppLanguage.swift
+      - path: AwakeMac/Shared/WakeModels.swift
+      - path: AwakeMac/Shared/SharedStateStore.swift
+      - path: AwakeMac/Shared/HardwareCapabilities.swift
+    dependencies:
+      - target: AwakeMac
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zhuhai.AwakeMac.Tests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  AwakeMac:
+    build:
+      targets:
+        AwakeMac: all
+        AwakeMacWidget: all
+        PowerHelper: all
+        AwakeMacTests: [test]
+    test:
+      targets:
+        - AwakeMacTests

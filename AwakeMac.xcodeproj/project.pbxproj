@@ -1,0 +1,875 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0008D8E03A98A185B81DA4C8 /* PowerHelperClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125688CEC63D58512327F47A /* PowerHelperClient.swift */; };
+		0ADD8AF9A0D6D8DDE64EC1C8 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C482F6F8FF34BDB8D64A6 /* AppLanguage.swift */; };
+		0B185B91A16148DD01D3C2DB /* WakeControllerNotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BD076931E3A078EBE33989 /* WakeControllerNotificationTests.swift */; };
+		1530533C890F63DF38A00F99 /* AwakeMacWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20B1A797D7792242E25969 /* AwakeMacWidget.swift */; };
+		1C26EB1703BED3523D8EBCD8 /* AwakeMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1650777BEA1E1C6F905C5BB5 /* AwakeMacApp.swift */; };
+		21193A8BCA1AE5A8CEB4E64D /* LoginItemServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A28B984CC9630C2717AED /* LoginItemServiceTests.swift */; };
+		27AD4BCCD4348D3012572464 /* install-local-helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = CAA3D3B42E5A7AB61C44CFF4 /* install-local-helper.sh */; };
+		2C7B562D90641B2A04F70854 /* AwakeMacAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633AF0E34A10E94975E6DD61 /* AwakeMacAppDelegate.swift */; };
+		34A7B20DB1B2F3BDB4FCBA52 /* WakeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93EC48A82DC2369E0A13AF4 /* WakeModels.swift */; };
+		37CCB3B04BACEDFB69E00B57 /* PowerHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800571293BAE7F376B7F05C /* PowerHelperProtocol.swift */; };
+		38D24A6817778CE98A683C57 /* WakeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93EC48A82DC2369E0A13AF4 /* WakeModels.swift */; };
+		42968740762DEDB4F91EBB87 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10283BDA6774DAD5F2ED1BC6 /* NotificationService.swift */; };
+		47AEC41D32658E052B7DD791 /* WakeIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45CBA0C182F16FF75ABA72D /* WakeIntents.swift */; };
+		4FD1602BD6EA771C2EA94AE4 /* LoginItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151E94D9262E989A7C54C5F6 /* LoginItemService.swift */; };
+		5A5CCE155797BA53577388BD /* HardwareCapabilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDE22F20F36FE6EED33CFFC /* HardwareCapabilitiesTests.swift */; };
+		5D0E125C55C2BFE414BF88A2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 90BADA9A0FA9A7D8ABD0C545 /* Localizable.xcstrings */; };
+		6835CEF07625E9E56E376AF5 /* LidModeConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93ADBF2612E1A571E3B1349 /* LidModeConcurrencyTests.swift */; };
+		6E118D1E21AAB965F23022D8 /* WakeModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB7C066188E57D4FFEF2FE /* WakeModelsTests.swift */; };
+		788A9AA1035F0E1504620E2F /* WakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20181C31A2262147F526CB63 /* WakeController.swift */; };
+		7EA1C2CE118F987E8A26847F /* SharedStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20501F959804A3D147C9B777 /* SharedStateStore.swift */; };
+		8681E22F17E3F3EE260DB873 /* AwakeTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8382F54AF2751FAEE2B1D /* AwakeTypography.swift */; };
+		8762E3FA94F6A117C370A90B /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116B53921037BCD5DAC148F7 /* MenuBarContentView.swift */; };
+		8EF3BFD60086588A545ED579 /* ControlInteractionStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3617DBE54FAEE19FF0EDCE16 /* ControlInteractionStateTests.swift */; };
+		8FBAEAACDC1B9DC6D2CEE022 /* HardwareCapabilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E755B34B18D9C4255E55C8C1 /* HardwareCapabilities.swift */; };
+		909284D3BE18AE9D9B28D324 /* com.zhuhai.AwakeMac.PowerHelper.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E6ECD0B2F2D2B928C087053 /* com.zhuhai.AwakeMac.PowerHelper.plist */; };
+		988407AAAB4C393F32494690 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7025FFE2A86B56593E415 /* L10n.swift */; };
+		9C976CB327A25AE44E602522 /* SharedStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20501F959804A3D147C9B777 /* SharedStateStore.swift */; };
+		A24831853A338F7C80D021D8 /* AppWindowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE20AF01913ADCB560FFDD9 /* AppWindowCoordinatorTests.swift */; };
+		AA50EBD685D21AA625591D3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66DD890E0ED94FE5A38D40F /* Assets.xcassets */; };
+		AB9C2F2C94EC588F36A19E4D /* SharedStateStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D1733602AE9684140B0AA /* SharedStateStoreTests.swift */; };
+		ADD1A5E5740E6F3C249EEC0F /* ApplicationRunningDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA3C903CCA671A6A276BDF /* ApplicationRunningDetector.swift */; };
+		B1C5029C3210892C7E4998DF /* AutomationAndQuickAwayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20ACB5F7FA1508DC86BE9BE /* AutomationAndQuickAwayTests.swift */; };
+		B2AD45F65AB7A626500D0785 /* AppWindowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90D365A02798584819D56E3 /* AppWindowCoordinator.swift */; };
+		B8E1FB0E933C7E5068A1621E /* HardwareCapabilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E755B34B18D9C4255E55C8C1 /* HardwareCapabilities.swift */; };
+		BFE9FBAEED855A58C017E76D /* AwakeMacWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B8B9B728993B74189D718AF2 /* AwakeMacWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C19B1E5440F91036F8C95D40 /* SharedStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20501F959804A3D147C9B777 /* SharedStateStore.swift */; };
+		C610E820F9B95456B338F08E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CD06D3AAB3A30A4087515FAE /* Localizable.xcstrings */; };
+		CC673393D4BBB74F76186B9B /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C482F6F8FF34BDB8D64A6 /* AppLanguage.swift */; };
+		CD793CE2112EBDBEE326C30D /* PowerMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8B25EFC2A622C6D933692 /* PowerMonitor.swift */; };
+		D6E5611FC08D7CD2B25821EB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5CCA8C9DDC4D94220D910E /* SettingsView.swift */; };
+		D81535AAD6237B2A9814FC44 /* DisplayBrightnessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201C22B2D489505495559A99 /* DisplayBrightnessController.swift */; };
+		DA79EBE31A0B7B3FF4C83356 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5217C4779398A3FEAD2707 /* main.swift */; };
+		DAADEA761EF625282B4CA50F /* com.zhuhai.AwakeMac.PowerHelper.local.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F9291733D2F5B7042B8F799 /* com.zhuhai.AwakeMac.PowerHelper.local.plist */; };
+		E5FEE5C1159A6033421A2320 /* WakeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93EC48A82DC2369E0A13AF4 /* WakeModels.swift */; };
+		E91D7B7CBE0B24D8B2055C6B /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7025FFE2A86B56593E415 /* L10n.swift */; };
+		EB66E586463C0BBD9ED4C0CC /* PowerHelperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356A31CEA265EC5DF6B170D /* PowerHelperService.swift */; };
+		F381F077F1759727AA4AD558 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C482F6F8FF34BDB8D64A6 /* AppLanguage.swift */; };
+		F42BCC1904FC006E7651432E /* LocalPowerHelperInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAEDD6649543BE3A09D4C24 /* LocalPowerHelperInstaller.swift */; };
+		FE2076380AD61E56D162FDF2 /* PowerHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8800571293BAE7F376B7F05C /* PowerHelperProtocol.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4DB759E78BDDA75B86F8DE4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 292B79995475655B751E6B09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 356CB8FF3147DC1F2ED1C71E;
+			remoteInfo = PowerHelper;
+		};
+		C6A08D40432F3FBEAFD25E8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 292B79995475655B751E6B09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FC61806AA1FB2E034393453;
+			remoteInfo = AwakeMac;
+		};
+		F3886DFBCC74C842A14830C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 292B79995475655B751E6B09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF3FA958910A7A2DC2E521C9;
+			remoteInfo = AwakeMacWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0E310C703EE74B3B7271B38F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BFE9FBAEED855A58C017E76D /* AwakeMacWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		03945D2B1CAFEC665697B284 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0E8D82458734A56384DE13F8 /* AwakeMacWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AwakeMacWidget.entitlements; sourceTree = "<group>"; };
+		10283BDA6774DAD5F2ED1BC6 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		116B53921037BCD5DAC148F7 /* MenuBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarContentView.swift; sourceTree = "<group>"; };
+		125688CEC63D58512327F47A /* PowerHelperClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerHelperClient.swift; sourceTree = "<group>"; };
+		151E94D9262E989A7C54C5F6 /* LoginItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemService.swift; sourceTree = "<group>"; };
+		1650777BEA1E1C6F905C5BB5 /* AwakeMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeMacApp.swift; sourceTree = "<group>"; };
+		1DE20AF01913ADCB560FFDD9 /* AppWindowCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWindowCoordinatorTests.swift; sourceTree = "<group>"; };
+		20181C31A2262147F526CB63 /* WakeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeController.swift; sourceTree = "<group>"; };
+		201C22B2D489505495559A99 /* DisplayBrightnessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayBrightnessController.swift; sourceTree = "<group>"; };
+		20501F959804A3D147C9B777 /* SharedStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStateStore.swift; sourceTree = "<group>"; };
+		3617DBE54FAEE19FF0EDCE16 /* ControlInteractionStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlInteractionStateTests.swift; sourceTree = "<group>"; };
+		3CA8B25EFC2A622C6D933692 /* PowerMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerMonitor.swift; sourceTree = "<group>"; };
+		4D20B1A797D7792242E25969 /* AwakeMacWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeMacWidget.swift; sourceTree = "<group>"; };
+		5DD4148F7D11DBEF2004726E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		633AF0E34A10E94975E6DD61 /* AwakeMacAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeMacAppDelegate.swift; sourceTree = "<group>"; };
+		6C5D1733602AE9684140B0AA /* SharedStateStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStateStoreTests.swift; sourceTree = "<group>"; };
+		6E6ECD0B2F2D2B928C087053 /* com.zhuhai.AwakeMac.PowerHelper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = com.zhuhai.AwakeMac.PowerHelper.plist; sourceTree = "<group>"; };
+		6F9291733D2F5B7042B8F799 /* com.zhuhai.AwakeMac.PowerHelper.local.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = com.zhuhai.AwakeMac.PowerHelper.local.plist; sourceTree = "<group>"; };
+		734C482F6F8FF34BDB8D64A6 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		76D7025FFE2A86B56593E415 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		7A5F9042EADB95585F728CD2 /* PowerHelper */ = {isa = PBXFileReference; includeInIndex = 0; path = PowerHelper; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BCA3C903CCA671A6A276BDF /* ApplicationRunningDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationRunningDetector.swift; sourceTree = "<group>"; };
+		7ED8382F54AF2751FAEE2B1D /* AwakeTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeTypography.swift; sourceTree = "<group>"; };
+		7FDE22F20F36FE6EED33CFFC /* HardwareCapabilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareCapabilitiesTests.swift; sourceTree = "<group>"; };
+		8800571293BAE7F376B7F05C /* PowerHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerHelperProtocol.swift; sourceTree = "<group>"; };
+		8B4B5E045D6B7976E34E2A40 /* AwakeMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwakeMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F2F3E04E528A78CBA7C8801 /* AwakeMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwakeMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90BADA9A0FA9A7D8ABD0C545 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		9CAEDD6649543BE3A09D4C24 /* LocalPowerHelperInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPowerHelperInstaller.swift; sourceTree = "<group>"; };
+		9F5217C4779398A3FEAD2707 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A93ADBF2612E1A571E3B1349 /* LidModeConcurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LidModeConcurrencyTests.swift; sourceTree = "<group>"; };
+		B45CBA0C182F16FF75ABA72D /* WakeIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeIntents.swift; sourceTree = "<group>"; };
+		B8B9B728993B74189D718AF2 /* AwakeMacWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AwakeMacWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C356A31CEA265EC5DF6B170D /* PowerHelperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerHelperService.swift; sourceTree = "<group>"; };
+		C93EC48A82DC2369E0A13AF4 /* WakeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeModels.swift; sourceTree = "<group>"; };
+		C9BB7C066188E57D4FFEF2FE /* WakeModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeModelsTests.swift; sourceTree = "<group>"; };
+		CAA3D3B42E5A7AB61C44CFF4 /* install-local-helper.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-local-helper.sh"; sourceTree = "<group>"; };
+		CD06D3AAB3A30A4087515FAE /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CE7A28B984CC9630C2717AED /* LoginItemServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemServiceTests.swift; sourceTree = "<group>"; };
+		D66DD890E0ED94FE5A38D40F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DE5CCA8C9DDC4D94220D910E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E755B34B18D9C4255E55C8C1 /* HardwareCapabilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareCapabilities.swift; sourceTree = "<group>"; };
+		E90D365A02798584819D56E3 /* AppWindowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWindowCoordinator.swift; sourceTree = "<group>"; };
+		F20ACB5F7FA1508DC86BE9BE /* AutomationAndQuickAwayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomationAndQuickAwayTests.swift; sourceTree = "<group>"; };
+		F7025A9912AF00F23C4DFD59 /* AwakeMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AwakeMac.entitlements; sourceTree = "<group>"; };
+		F7BD076931E3A078EBE33989 /* WakeControllerNotificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeControllerNotificationTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		391D706F77249940D0CD19FF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7ED8382F54AF2751FAEE2B1D /* AwakeTypography.swift */,
+				116B53921037BCD5DAC148F7 /* MenuBarContentView.swift */,
+				DE5CCA8C9DDC4D94220D910E /* SettingsView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		5471E77E94B164737D67FE63 /* AwakeMac */ = {
+			isa = PBXGroup;
+			children = (
+				F7025A9912AF00F23C4DFD59 /* AwakeMac.entitlements */,
+				03945D2B1CAFEC665697B284 /* Info.plist */,
+				6F7711090672F288E0FA248B /* App */,
+				E12AB0ABD379E321EFBE2B73 /* Resources */,
+				E7A8A6C1BA1EC73903151D93 /* Shared */,
+				391D706F77249940D0CD19FF /* UI */,
+			);
+			path = AwakeMac;
+			sourceTree = "<group>";
+		};
+		5DA525211F2649C301DD2CE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8B4B5E045D6B7976E34E2A40 /* AwakeMac.app */,
+				8F2F3E04E528A78CBA7C8801 /* AwakeMacTests.xctest */,
+				B8B9B728993B74189D718AF2 /* AwakeMacWidget.appex */,
+				7A5F9042EADB95585F728CD2 /* PowerHelper */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6F7711090672F288E0FA248B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7BCA3C903CCA671A6A276BDF /* ApplicationRunningDetector.swift */,
+				E90D365A02798584819D56E3 /* AppWindowCoordinator.swift */,
+				1650777BEA1E1C6F905C5BB5 /* AwakeMacApp.swift */,
+				633AF0E34A10E94975E6DD61 /* AwakeMacAppDelegate.swift */,
+				201C22B2D489505495559A99 /* DisplayBrightnessController.swift */,
+				9CAEDD6649543BE3A09D4C24 /* LocalPowerHelperInstaller.swift */,
+				151E94D9262E989A7C54C5F6 /* LoginItemService.swift */,
+				10283BDA6774DAD5F2ED1BC6 /* NotificationService.swift */,
+				125688CEC63D58512327F47A /* PowerHelperClient.swift */,
+				3CA8B25EFC2A622C6D933692 /* PowerMonitor.swift */,
+				20181C31A2262147F526CB63 /* WakeController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		79DD1AC9199C36C0EF3C1BA4 /* PowerHelper */ = {
+			isa = PBXGroup;
+			children = (
+				6E6ECD0B2F2D2B928C087053 /* com.zhuhai.AwakeMac.PowerHelper.plist */,
+				9F5217C4779398A3FEAD2707 /* main.swift */,
+				C356A31CEA265EC5DF6B170D /* PowerHelperService.swift */,
+			);
+			path = PowerHelper;
+			sourceTree = "<group>";
+		};
+		85C2AF1D1065C5958DCA0CC3 /* AwakeMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				1DE20AF01913ADCB560FFDD9 /* AppWindowCoordinatorTests.swift */,
+				F20ACB5F7FA1508DC86BE9BE /* AutomationAndQuickAwayTests.swift */,
+				3617DBE54FAEE19FF0EDCE16 /* ControlInteractionStateTests.swift */,
+				7FDE22F20F36FE6EED33CFFC /* HardwareCapabilitiesTests.swift */,
+				A93ADBF2612E1A571E3B1349 /* LidModeConcurrencyTests.swift */,
+				CE7A28B984CC9630C2717AED /* LoginItemServiceTests.swift */,
+				6C5D1733602AE9684140B0AA /* SharedStateStoreTests.swift */,
+				F7BD076931E3A078EBE33989 /* WakeControllerNotificationTests.swift */,
+				C9BB7C066188E57D4FFEF2FE /* WakeModelsTests.swift */,
+			);
+			path = AwakeMacTests;
+			sourceTree = "<group>";
+		};
+		88AEA1A80893C3CB8A749786 /* LocalHelper */ = {
+			isa = PBXGroup;
+			children = (
+				6F9291733D2F5B7042B8F799 /* com.zhuhai.AwakeMac.PowerHelper.local.plist */,
+				CAA3D3B42E5A7AB61C44CFF4 /* install-local-helper.sh */,
+			);
+			path = LocalHelper;
+			sourceTree = "<group>";
+		};
+		BD3F25A8D33EEBE3F55E8570 = {
+			isa = PBXGroup;
+			children = (
+				5471E77E94B164737D67FE63 /* AwakeMac */,
+				85C2AF1D1065C5958DCA0CC3 /* AwakeMacTests */,
+				CC157A2DCD6D86E31E449D50 /* AwakeMacWidget */,
+				79DD1AC9199C36C0EF3C1BA4 /* PowerHelper */,
+				5DA525211F2649C301DD2CE8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CC157A2DCD6D86E31E449D50 /* AwakeMacWidget */ = {
+			isa = PBXGroup;
+			children = (
+				0E8D82458734A56384DE13F8 /* AwakeMacWidget.entitlements */,
+				4D20B1A797D7792242E25969 /* AwakeMacWidget.swift */,
+				5DD4148F7D11DBEF2004726E /* Info.plist */,
+				90BADA9A0FA9A7D8ABD0C545 /* Localizable.xcstrings */,
+				B45CBA0C182F16FF75ABA72D /* WakeIntents.swift */,
+			);
+			path = AwakeMacWidget;
+			sourceTree = "<group>";
+		};
+		E12AB0ABD379E321EFBE2B73 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D66DD890E0ED94FE5A38D40F /* Assets.xcassets */,
+				CD06D3AAB3A30A4087515FAE /* Localizable.xcstrings */,
+				88AEA1A80893C3CB8A749786 /* LocalHelper */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E7A8A6C1BA1EC73903151D93 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				734C482F6F8FF34BDB8D64A6 /* AppLanguage.swift */,
+				E755B34B18D9C4255E55C8C1 /* HardwareCapabilities.swift */,
+				76D7025FFE2A86B56593E415 /* L10n.swift */,
+				8800571293BAE7F376B7F05C /* PowerHelperProtocol.swift */,
+				20501F959804A3D147C9B777 /* SharedStateStore.swift */,
+				C93EC48A82DC2369E0A13AF4 /* WakeModels.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		356CB8FF3147DC1F2ED1C71E /* PowerHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9FBA2A009052D0860AC44EC5 /* Build configuration list for PBXNativeTarget "PowerHelper" */;
+			buildPhases = (
+				04D16C30601AB81EB6EFBC46 /* Sources */,
+				AFD733372B8F8D9DB0F84802 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PowerHelper;
+			packageProductDependencies = (
+			);
+			productName = PowerHelper;
+			productReference = 7A5F9042EADB95585F728CD2 /* PowerHelper */;
+			productType = "com.apple.product-type.tool";
+		};
+		8FC61806AA1FB2E034393453 /* AwakeMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D40758E298A68376EB01234 /* Build configuration list for PBXNativeTarget "AwakeMac" */;
+			buildPhases = (
+				93B0DD5556845B589BAA1FED /* Sources */,
+				477BBEA36DA2B58B62425A0D /* Resources */,
+				0E310C703EE74B3B7271B38F /* Embed Foundation Extensions */,
+				FC00748B85CEFAB331B3382D /* Embed PowerHelper */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6C31B3957F19AD3393091E0E /* PBXTargetDependency */,
+				B978F8E767AF503EA4FBA431 /* PBXTargetDependency */,
+			);
+			name = AwakeMac;
+			packageProductDependencies = (
+			);
+			productName = AwakeMac;
+			productReference = 8B4B5E045D6B7976E34E2A40 /* AwakeMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B8169863D73014058B1EE6DA /* AwakeMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8651FC147C2D5A18F9F975EA /* Build configuration list for PBXNativeTarget "AwakeMacTests" */;
+			buildPhases = (
+				70FCADC29330B7C16D30CC32 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				338F0FBA2E928853ADBA89B1 /* PBXTargetDependency */,
+			);
+			name = AwakeMacTests;
+			packageProductDependencies = (
+			);
+			productName = AwakeMacTests;
+			productReference = 8F2F3E04E528A78CBA7C8801 /* AwakeMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DF3FA958910A7A2DC2E521C9 /* AwakeMacWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E301A2D63B53636E8D3AEBD /* Build configuration list for PBXNativeTarget "AwakeMacWidget" */;
+			buildPhases = (
+				933B90C9DB5867BFC7BCADCC /* Sources */,
+				5619D83A2AFAF6E61613ADB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AwakeMacWidget;
+			packageProductDependencies = (
+			);
+			productName = AwakeMacWidget;
+			productReference = B8B9B728993B74189D718AF2 /* AwakeMacWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		292B79995475655B751E6B09 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					356CB8FF3147DC1F2ED1C71E = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					8FC61806AA1FB2E034393453 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					B8169863D73014058B1EE6DA = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					DF3FA958910A7A2DC2E521C9 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CA40226D4B54020FE8EE5E37 /* Build configuration list for PBXProject "AwakeMac" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				"zh-Hans",
+			);
+			mainGroup = BD3F25A8D33EEBE3F55E8570;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5DA525211F2649C301DD2CE8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8FC61806AA1FB2E034393453 /* AwakeMac */,
+				DF3FA958910A7A2DC2E521C9 /* AwakeMacWidget */,
+				356CB8FF3147DC1F2ED1C71E /* PowerHelper */,
+				B8169863D73014058B1EE6DA /* AwakeMacTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		477BBEA36DA2B58B62425A0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA50EBD685D21AA625591D3F /* Assets.xcassets in Resources */,
+				C610E820F9B95456B338F08E /* Localizable.xcstrings in Resources */,
+				DAADEA761EF625282B4CA50F /* com.zhuhai.AwakeMac.PowerHelper.local.plist in Resources */,
+				27AD4BCCD4348D3012572464 /* install-local-helper.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5619D83A2AFAF6E61613ADB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D0E125C55C2BFE414BF88A2 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFD733372B8F8D9DB0F84802 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				909284D3BE18AE9D9B28D324 /* com.zhuhai.AwakeMac.PowerHelper.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FC00748B85CEFAB331B3382D /* Embed PowerHelper */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/PowerHelper",
+				"$(SRCROOT)/PowerHelper/com.zhuhai.AwakeMac.PowerHelper.plist",
+			);
+			name = "Embed PowerHelper";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Library/LaunchDaemons/PowerHelper",
+				"$(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Library/LaunchDaemons/com.zhuhai.AwakeMac.PowerHelper.plist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nHELPER_DIR=\"$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH/Library/LaunchDaemons\"\nmkdir -p \"$HELPER_DIR\"\nditto \"$BUILT_PRODUCTS_DIR/PowerHelper\" \"$HELPER_DIR/PowerHelper\"\nditto \"$SRCROOT/PowerHelper/com.zhuhai.AwakeMac.PowerHelper.plist\" \"$HELPER_DIR/com.zhuhai.AwakeMac.PowerHelper.plist\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04D16C30601AB81EB6EFBC46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE2076380AD61E56D162FDF2 /* PowerHelperProtocol.swift in Sources */,
+				EB66E586463C0BBD9ED4C0CC /* PowerHelperService.swift in Sources */,
+				DA79EBE31A0B7B3FF4C83356 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70FCADC29330B7C16D30CC32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0ADD8AF9A0D6D8DDE64EC1C8 /* AppLanguage.swift in Sources */,
+				A24831853A338F7C80D021D8 /* AppWindowCoordinatorTests.swift in Sources */,
+				B1C5029C3210892C7E4998DF /* AutomationAndQuickAwayTests.swift in Sources */,
+				8EF3BFD60086588A545ED579 /* ControlInteractionStateTests.swift in Sources */,
+				8FBAEAACDC1B9DC6D2CEE022 /* HardwareCapabilities.swift in Sources */,
+				5A5CCE155797BA53577388BD /* HardwareCapabilitiesTests.swift in Sources */,
+				6835CEF07625E9E56E376AF5 /* LidModeConcurrencyTests.swift in Sources */,
+				21193A8BCA1AE5A8CEB4E64D /* LoginItemServiceTests.swift in Sources */,
+				9C976CB327A25AE44E602522 /* SharedStateStore.swift in Sources */,
+				AB9C2F2C94EC588F36A19E4D /* SharedStateStoreTests.swift in Sources */,
+				0B185B91A16148DD01D3C2DB /* WakeControllerNotificationTests.swift in Sources */,
+				34A7B20DB1B2F3BDB4FCBA52 /* WakeModels.swift in Sources */,
+				6E118D1E21AAB965F23022D8 /* WakeModelsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		933B90C9DB5867BFC7BCADCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC673393D4BBB74F76186B9B /* AppLanguage.swift in Sources */,
+				1530533C890F63DF38A00F99 /* AwakeMacWidget.swift in Sources */,
+				988407AAAB4C393F32494690 /* L10n.swift in Sources */,
+				7EA1C2CE118F987E8A26847F /* SharedStateStore.swift in Sources */,
+				47AEC41D32658E052B7DD791 /* WakeIntents.swift in Sources */,
+				E5FEE5C1159A6033421A2320 /* WakeModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93B0DD5556845B589BAA1FED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F381F077F1759727AA4AD558 /* AppLanguage.swift in Sources */,
+				B2AD45F65AB7A626500D0785 /* AppWindowCoordinator.swift in Sources */,
+				ADD1A5E5740E6F3C249EEC0F /* ApplicationRunningDetector.swift in Sources */,
+				1C26EB1703BED3523D8EBCD8 /* AwakeMacApp.swift in Sources */,
+				2C7B562D90641B2A04F70854 /* AwakeMacAppDelegate.swift in Sources */,
+				8681E22F17E3F3EE260DB873 /* AwakeTypography.swift in Sources */,
+				D81535AAD6237B2A9814FC44 /* DisplayBrightnessController.swift in Sources */,
+				B8E1FB0E933C7E5068A1621E /* HardwareCapabilities.swift in Sources */,
+				E91D7B7CBE0B24D8B2055C6B /* L10n.swift in Sources */,
+				F42BCC1904FC006E7651432E /* LocalPowerHelperInstaller.swift in Sources */,
+				4FD1602BD6EA771C2EA94AE4 /* LoginItemService.swift in Sources */,
+				8762E3FA94F6A117C370A90B /* MenuBarContentView.swift in Sources */,
+				42968740762DEDB4F91EBB87 /* NotificationService.swift in Sources */,
+				0008D8E03A98A185B81DA4C8 /* PowerHelperClient.swift in Sources */,
+				37CCB3B04BACEDFB69E00B57 /* PowerHelperProtocol.swift in Sources */,
+				CD793CE2112EBDBEE326C30D /* PowerMonitor.swift in Sources */,
+				D6E5611FC08D7CD2B25821EB /* SettingsView.swift in Sources */,
+				C19B1E5440F91036F8C95D40 /* SharedStateStore.swift in Sources */,
+				788A9AA1035F0E1504620E2F /* WakeController.swift in Sources */,
+				38D24A6817778CE98A683C57 /* WakeModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		338F0FBA2E928853ADBA89B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FC61806AA1FB2E034393453 /* AwakeMac */;
+			targetProxy = C6A08D40432F3FBEAFD25E8F /* PBXContainerItemProxy */;
+		};
+		6C31B3957F19AD3393091E0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 356CB8FF3147DC1F2ED1C71E /* PowerHelper */;
+			targetProxy = 4DB759E78BDDA75B86F8DE4A /* PBXContainerItemProxy */;
+		};
+		B978F8E767AF503EA4FBA431 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF3FA958910A7A2DC2E521C9 /* AwakeMacWidget */;
+			targetProxy = F3886DFBCC74C842A14830C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1838385DB15E01DD8C96D4D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AwakeMacWidget/AwakeMacWidget.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AwakeMacWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuhai.AwakeMac.Widget;
+				PRODUCT_NAME = AwakeMacWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		1C70AF918431C72D65A6278F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AwakeMac/AwakeMac.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AwakeMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuhai.AwakeMac;
+				PRODUCT_NAME = AwakeMac;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		205BBA1EC941DC40C2E2CEE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AwakeMacWidget/AwakeMacWidget.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AwakeMacWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuhai.AwakeMac.Widget;
+				PRODUCT_NAME = AwakeMacWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		56C3449D32DA80EF46C8F722 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuhai.AwakeMac.PowerHelper;
+				PRODUCT_NAME = PowerHelper;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		626A7C6701CC05D8AE50DEA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuhai.AwakeMac.Tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AwakeMac.app/Contents/MacOS/AwakeMac";
+			};
+			name = Debug;
+		};
+		6B459C433770D5292B88F40E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 12;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.2.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		9BDDFEB17A98920934305377 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AwakeMac/AwakeMac.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AwakeMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuhai.AwakeMac;
+				PRODUCT_NAME = AwakeMac;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A1DD5A34A7602F6C7F3A3380 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuhai.AwakeMac.Tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AwakeMac.app/Contents/MacOS/AwakeMac";
+			};
+			name = Release;
+		};
+		A4A1DA01F12D0166C62BD9D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "arm64 x86_64";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 12;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.2.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		E3C5A345E9D3DA323D90D770 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuhai.AwakeMac.PowerHelper;
+				PRODUCT_NAME = PowerHelper;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0D40758E298A68376EB01234 /* Build configuration list for PBXNativeTarget "AwakeMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BDDFEB17A98920934305377 /* Debug */,
+				1C70AF918431C72D65A6278F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5E301A2D63B53636E8D3AEBD /* Build configuration list for PBXNativeTarget "AwakeMacWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				205BBA1EC941DC40C2E2CEE1 /* Debug */,
+				1838385DB15E01DD8C96D4D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8651FC147C2D5A18F9F975EA /* Build configuration list for PBXNativeTarget "AwakeMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				626A7C6701CC05D8AE50DEA1 /* Debug */,
+				A1DD5A34A7602F6C7F3A3380 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9FBA2A009052D0860AC44EC5 /* Build configuration list for PBXNativeTarget "PowerHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3C5A345E9D3DA323D90D770 /* Debug */,
+				56C3449D32DA80EF46C8F722 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CA40226D4B54020FE8EE5E37 /* Build configuration list for PBXProject "AwakeMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B459C433770D5292B88F40E /* Debug */,
+				A4A1DA01F12D0166C62BD9D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 292B79995475655B751E6B09 /* Project object */;
+}

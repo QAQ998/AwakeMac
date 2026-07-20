@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AwakeMac UI Prototype</title>
+  <!--
+    Assumptions:
+    - The approved reference is current macOS native utility UI, so this is one deliberately conservative direction.
+    - The prototype is a review artifact; the production app is native SwiftUI and contains no WebView.
+    - No imagery is required. Removing decorative imagery improves the utility's information hierarchy.
+    - Green means safely active, orange means attention, and red is reserved for failure.
+  -->
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #e8e8ed;
+      --panel: rgba(248, 248, 250, .88);
+      --panel-solid: #f7f7f9;
+      --surface: rgba(255, 255, 255, .72);
+      --text: #1d1d1f;
+      --secondary: #6e6e73;
+      --tertiary: #8e8e93;
+      --separator: rgba(60, 60, 67, .18);
+      --blue: #007aff;
+      --green: #34c759;
+      --orange: #ff9f0a;
+      --red: #ff3b30;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .18), 0 2px 8px rgba(0, 0, 0, .08);
+      --radius: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #151517;
+      --panel: rgba(39, 39, 42, .88);
+      --panel-solid: #242426;
+      --surface: rgba(72, 72, 74, .62);
+      --text: #f5f5f7;
+      --secondary: #aeaeb2;
+      --tertiary: #8e8e93;
+      --separator: rgba(235, 235, 245, .16);
+      --blue: #0a84ff;
+      --green: #30d158;
+      --orange: #ff9f0a;
+      --red: #ff453a;
+      --shadow: 0 26px 80px rgba(0, 0, 0, .54), 0 1px 0 rgba(255, 255, 255, .08) inset;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+    body { background: var(--page); color: var(--text); font-size: 13px; }
+    button, select, input { font: inherit; }
+    button, select { cursor: pointer; }
+    button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid color-mix(in srgb, var(--blue) 45%, transparent); outline-offset: 2px; }
+    .workspace { min-height: 100vh; padding: 28px; }
+    .review-bar {
+      position: sticky; top: 16px; z-index: 10; margin: 0 auto 28px; max-width: 1180px;
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+      background: color-mix(in srgb, var(--panel-solid) 78%, transparent); backdrop-filter: blur(22px) saturate(150%);
+      border: 1px solid var(--separator); border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    }
+    .review-title { font-weight: 650; margin-right: auto; }
+    .control-group { display: flex; align-items: center; gap: 6px; color: var(--secondary); }
+    .segmented { display: inline-flex; padding: 2px; border-radius: 7px; background: color-mix(in srgb, var(--tertiary) 20%, transparent); }
+    .segmented button { border: 0; background: transparent; color: var(--text); border-radius: 5px; padding: 4px 10px; }
+    .segmented button.active { background: var(--panel-solid); box-shadow: 0 1px 3px rgba(0,0,0,.16); }
+    .native-select, .native-button {
+      min-height: 28px; border: 1px solid var(--separator); border-radius: 7px; color: var(--text);
+      background: var(--surface); padding: 4px 10px;
+    }
+    .native-button.primary { color: white; background: var(--blue); border-color: color-mix(in srgb, var(--blue) 80%, black); }
+    .native-button.danger { color: var(--red); }
+    .canvas { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 360px minmax(520px, 1fr); gap: 28px; align-items: start; }
+    .column { display: grid; gap: 22px; }
+    .caption { color: var(--secondary); margin: 0 0 8px 6px; font-size: 12px; }
+    .window, .popover, .widget {
+      background: var(--panel); border: 1px solid var(--separator); box-shadow: var(--shadow); overflow: hidden;
+      backdrop-filter: blur(28px) saturate(145%);
+    }
+    .window { border-radius: 13px; }
+    .titlebar { height: 38px; display: flex; align-items: center; padding: 0 13px; border-bottom: 1px solid var(--separator); position: relative; }
+    .traffic { display: flex; gap: 8px; }
+    .traffic span { width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 0 .5px rgba(0,0,0,.16) inset; }
+    .traffic span:nth-child(1) { background: #ff5f57; }.traffic span:nth-child(2) { background: #febc2e; }.traffic span:nth-child(3) { background: #28c840; }
+    .window-title { position: absolute; inset-inline: 60px; text-align: center; font-weight: 600; color: var(--secondary); }
+    .popover { width: 340px; border-radius: var(--radius); padding: 16px; }
+    .status-header { display: flex; gap: 12px; align-items: center; margin-bottom: 15px; }
+    .status-symbol { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--secondary) 12%, transparent); color: var(--secondary); font-size: 21px; }
+    .status-symbol.active { color: var(--green); background: color-mix(in srgb, var(--green) 13%, transparent); }
+    .status-copy { min-width: 0; flex: 1; }
+    .status-copy h1 { font-size: 15px; margin: 0 0 2px; font-weight: 680; }
+    .status-copy p { margin: 0; color: var(--secondary); line-height: 1.3; }
+    .status-copy p.urgent { color: var(--orange); font-weight: 550; }
+    .row { min-height: 44px; display: flex; align-items: center; gap: 10px; border-top: 1px solid var(--separator); }
+    .row-copy { min-width: 0; flex: 1; }
+    .row-title { display: block; font-weight: 530; }
+    .row-detail { display: block; color: var(--secondary); font-size: 11px; line-height: 1.25; margin-top: 2px; text-wrap: pretty; }
+    .switch { width: 36px; height: 21px; border: 0; border-radius: 20px; padding: 2px; background: #8e8e93; transition: background .16s ease; flex: 0 0 auto; }
+    .switch::after { content: ""; display: block; width: 17px; height: 17px; border-radius: 50%; background: white; box-shadow: 0 1px 3px rgba(0,0,0,.32); transition: transform .16s ease; }
+    .switch.on { background: var(--green); }.switch.on::after { transform: translateX(15px); }
+    .switch:disabled { opacity: .38; cursor: default; }
+    .notice { margin: 10px 0 2px; display: flex; gap: 8px; color: var(--orange); font-size: 11px; line-height: 1.35; }
+    .notice[hidden] { display: none; }
+    .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--separator); margin-top: 12px; }
+    .link-button { border: 0; color: var(--blue); background: transparent; padding: 3px 0; }
+    .link-button.danger { color: var(--red); }
+    .settings-body { height: 420px; display: grid; grid-template-columns: 152px 1fr; }
+    .sidebar { border-right: 1px solid var(--separator); padding: 12px 10px; background: color-mix(in srgb, var(--surface) 48%, transparent); }
+    .side-item { width: 100%; border: 0; border-radius: 7px; padding: 7px 9px; background: transparent; color: var(--text); text-align: left; margin-bottom: 3px; }
+    .side-item.active { background: color-mix(in srgb, var(--blue) 17%, transparent); color: var(--text); }
+    .settings-content { padding: 22px 26px; overflow: auto; }
+    .settings-content h2 { margin: 0 0 18px; font-size: 20px; }
+    .group { margin-bottom: 22px; }
+    .group-label { color: var(--secondary); font-size: 11px; margin: 0 0 7px 8px; text-transform: none; }
+    .group-box { border: 1px solid var(--separator); border-radius: 10px; overflow: hidden; background: var(--surface); }
+    .group-box .row { padding: 0 12px; border-top: 1px solid var(--separator); }.group-box .row:first-child { border-top: 0; }
+    .widgets { display: grid; grid-template-columns: 170px; gap: 14px; }
+    .widget { border-radius: 22px; min-height: 170px; padding: 16px; }
+    .widget.small { display: flex; flex-direction: column; }
+    .widget-title { display: flex; align-items: center; gap: 6px; font-weight: 650; }
+    .widget-time { font-size: 24px; font-weight: 670; letter-spacing: -.02em; margin-top: 18px; }
+    .widget-sub { color: var(--secondary); margin-top: 3px; }
+    .widget-action { margin-top: auto; border: 0; border-radius: 999px; min-height: 30px; background: var(--blue); color: white; font-weight: 600; }
+    .widget-action.stop { background: color-mix(in srgb, var(--secondary) 20%, transparent); color: var(--text); }
+    .widget.medium { width: 340px; display: grid; grid-template-columns: 1fr 128px; gap: 16px; }
+    .quick-actions { display: grid; gap: 6px; align-content: center; }
+    .quick-actions button { min-height: 29px; border: 0; border-radius: 8px; background: color-mix(in srgb, var(--secondary) 16%, transparent); color: var(--text); }
+    .quick-actions button.primary { background: var(--blue); color: white; }
+    .modal-backdrop { position: fixed; inset: 0; display: none; place-items: center; background: rgba(0,0,0,.25); backdrop-filter: blur(4px); z-index: 30; }
+    .modal-backdrop.open { display: grid; }
+    .sheet { width: 380px; border-radius: 14px; background: var(--panel-solid); border: 1px solid var(--separator); box-shadow: var(--shadow); padding: 22px; text-align: center; }
+    .warning-icon { color: var(--orange); font-size: 36px; }
+    .sheet h2 { font-size: 16px; margin: 10px 0 7px; }.sheet p { color: var(--secondary); line-height: 1.45; margin: 0; text-wrap: pretty; }
+    .sheet-actions { margin-top: 20px; display: flex; justify-content: flex-end; gap: 8px; }
+    @media (max-width: 900px) { .canvas { grid-template-columns: 1fr; }.popover { margin-inline: auto; }.review-bar { flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+  <main class="workspace">
+    <header class="review-bar">
+      <div class="review-title">AwakeMac · UI Review</div>
+      <div class="control-group"><span data-i18n="device">设备</span><select class="native-select" id="deviceSelect"><option value="laptop">MacBook Air</option><option value="desktop">Mac mini</option></select></div>
+      <div class="segmented" aria-label="Language"><button id="langZh" class="active">简体中文</button><button id="langEn">English</button></div>
+      <div class="segmented" aria-label="Appearance"><button id="themeLight" class="active">☀︎</button><button id="themeDark">☾</button></div>
+    </header>
+
+    <section class="canvas">
+      <div class="column">
+        <div>
+          <p class="caption" data-i18n="menuCaption">菜单栏弹窗 · 可操作</p>
+          <section class="popover" aria-label="AwakeMac menu popover">
+            <div class="status-header">
+              <div class="status-symbol" id="statusSymbol" aria-hidden="true">☾</div>
+              <div class="status-copy"><h1 data-i18n="stayAwake">保持唤醒</h1><p id="statusText">已关闭</p></div>
+              <button class="switch" id="wakeSwitch" role="switch" aria-checked="false" aria-label="保持唤醒"></button>
+            </div>
+            <div class="row"><div class="row-copy"><span class="row-title" data-i18n="duration">持续时间</span></div><select class="native-select" id="durationSelect"><option value="15">15 分钟</option><option value="30">30 分钟</option><option value="60" selected>1 小时</option><option value="120">2 小时</option><option value="240">4 小时</option><option value="0">无限期</option></select></div>
+            <div class="row">
+              <div aria-hidden="true">▱</div><div class="row-copy"><span class="row-title" data-i18n="lidMode">合盖仍保持运行</span><span class="row-detail" id="lidDetail">请先开启保持唤醒</span></div>
+              <button class="switch" id="lidSwitch" role="switch" aria-checked="false" disabled aria-label="合盖仍保持运行"></button>
+            </div>
+            <div class="notice" id="notice" hidden><span aria-hidden="true">△</span><span data-i18n="safetyNotice">低电量或温度过高时会自动恢复合盖睡眠。</span></div>
+            <div class="footer"><button class="link-button" id="openSettings" data-i18n="settingsEllipsis">设置…</button><button class="link-button danger" id="stopQuit" data-i18n="stopQuit">关闭并退出</button></div>
+          </section>
+        </div>
+
+        <div>
+          <p class="caption" data-i18n="widgetCaption">桌面小组件 · 小号与中号</p>
+          <div class="widgets">
+            <section class="widget small">
+              <div class="widget-title"><span id="smallIcon">☾</span><span data-i18n="awakeName">醒着</span></div>
+              <div class="widget-time" id="smallTime">已关闭</div><div class="widget-sub" id="smallSub">使用系统设置</div>
+              <button class="widget-action" id="smallAction">开启</button>
+            </section>
+            <section class="widget medium">
+              <div><div class="widget-title"><span id="mediumIcon">☾</span><span data-i18n="awakeName">醒着</span></div><div class="widget-time" id="mediumTime">已关闭</div><div class="widget-sub" id="mediumSub">无高级模式</div></div>
+              <div class="quick-actions"><button data-minutes="30">30 分钟</button><button data-minutes="60">1 小时</button><button data-minutes="0">无限期</button><button class="primary" id="mediumStop">开启</button></div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div>
+          <p class="caption" data-i18n="settingsCaption">设置窗口 · 原生分组</p>
+          <section class="window">
+            <div class="titlebar"><div class="traffic"><span></span><span></span><span></span></div><div class="window-title" data-i18n="settings">设置</div></div>
+            <div class="settings-body">
+              <nav class="sidebar"><button class="side-item active" data-tab="general" data-i18n="general">通用</button><button class="side-item" data-tab="safety" data-i18n="safety">安全</button><button class="side-item" data-tab="about" data-i18n="about">关于</button></nav>
+              <div class="settings-content" id="settingsContent"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="safetyModal" role="dialog" aria-modal="true">
+    <div class="sheet"><div class="warning-icon">△</div><h2 data-i18n="advancedTitle">启用实验性合盖模式？</h2><p data-i18n="advancedBody">合盖后持续运行可能产生热量并消耗电池。电量低于 20% 或温度过高时，醒着会自动恢复睡眠。</p><div class="sheet-actions"><button class="native-button" id="modalCancel" data-i18n="cancel">取消</button><button class="native-button primary" id="modalContinue" data-i18n="continue">继续并模拟审批…</button></div></div>
+  </div>
+
+  <script>
+    const copy = {
+      zh: { device:'设备',menuCaption:'菜单栏弹窗 · 可操作',widgetCaption:'桌面小组件 · 小号与中号',settingsCaption:'设置窗口 · 原生分组',stayAwake:'保持唤醒',off:'已关闭',active:'保持唤醒中',duration:'持续时间',lidMode:'合盖仍保持运行',enableFirst:'请先开启保持唤醒',noLid:'此 Mac 没有合盖睡眠功能',lidReady:'实验功能，需首次审批',lidActive:'合盖模式已开启',safetyNotice:'低电量或温度过高时会自动恢复合盖睡眠。',settingsEllipsis:'设置…',stopQuit:'关闭并退出',awakeName:'醒着',systemSettings:'使用系统设置',noAdvanced:'无高级模式',on:'开启',stop:'关闭',unlimited:'无限期',remaining:'剩余',settings:'设置',general:'通用',safety:'安全',about:'关于',advancedTitle:'启用实验性合盖模式？',advancedBody:'合盖后持续运行可能产生热量并消耗电池。电量低于 20% 或温度过高时，醒着会自动恢复睡眠。',cancel:'取消',continue:'继续并模拟审批…',launch:'登录时启动',defaultDuration:'默认持续时间',language:'应用语言',helper:'合盖助手',helperReady:'等待首次审批',battery:'低电量保护',batteryValue:'20% 自动恢复睡眠',thermal:'温度保护',thermalValue:'严重或临界时恢复',version:'版本',compatibility:'兼容性',experimental:'实验功能',experimentalValue:'合盖模式依赖系统级设置',minute:'分钟',hour:'小时'},
+      en: { device:'Device',menuCaption:'Menu bar popover · Interactive',widgetCaption:'Desktop widgets · Small and medium',settingsCaption:'Settings window · Native groups',stayAwake:'Stay Awake',off:'Off',active:'Staying awake',duration:'Duration',lidMode:'Stay awake with lid closed',enableFirst:'Turn on Stay Awake first',noLid:'This Mac has no lid sleep feature',lidReady:'Experimental; first-use approval required',lidActive:'Closed-lid mode is on',safetyNotice:'Lid sleep returns automatically on low battery or high temperature.',settingsEllipsis:'Settings…',stopQuit:'Stop and Quit',awakeName:'Awake',systemSettings:'Using system settings',noAdvanced:'Advanced mode off',on:'Start',stop:'Stop',unlimited:'Unlimited',remaining:'Remaining',settings:'Settings',general:'General',safety:'Safety',about:'About',advancedTitle:'Enable experimental lid mode?',advancedBody:'Running with the lid closed may generate heat and use battery. Awake restores sleep below 20% battery or at a high thermal state.',cancel:'Cancel',continue:'Continue and simulate approval…',launch:'Launch at login',defaultDuration:'Default duration',language:'App language',helper:'Lid helper',helperReady:'Awaiting first-use approval',battery:'Low-battery protection',batteryValue:'Restore sleep automatically at 20%',thermal:'Thermal protection',thermalValue:'Restore at serious or critical',version:'Version',compatibility:'Compatibility',experimental:'Experimental feature',experimentalValue:'Lid mode depends on a system-level setting',minute:'min',hour:'hr'}
+    };
+    const state = { lang:'zh', theme:'light', device:'laptop', awake:false, lid:false, minutes:60, tab:'general' };
+    const $ = id => document.getElementById(id);
+    const t = key => copy[state.lang][key];
+    function durationLabel(minutes) { if (minutes === 0) return t('unlimited'); if (minutes < 60) return `${minutes} ${t('minute')}`; return `${minutes/60} ${t('hour')}`; }
+    function renderSettings() {
+      let html = '';
+      if (state.tab === 'general') html = `<h2>${t('general')}</h2><div class="group"><p class="group-label">${t('general')}</p><div class="group-box"><div class="row"><div class="row-copy"><span class="row-title">${t('launch')}</span></div><button class="switch on" aria-label="${t('launch')}"></button></div><div class="row"><div class="row-copy"><span class="row-title">${t('defaultDuration')}</span></div><span>${durationLabel(state.minutes)}</span></div><div class="row"><div class="row-copy"><span class="row-title">${t('language')}</span></div><span>${state.lang==='zh'?'简体中文':'English'}</span></div></div></div>`;
+      if (state.tab === 'safety') html = `<h2>${t('safety')}</h2><div class="group"><p class="group-label">${t('lidMode')}</p><div class="group-box"><div class="row"><div class="row-copy"><span class="row-title">${t('helper')}</span><span class="row-detail">${state.device==='desktop'?t('noLid'):(state.lid?t('lidActive'):t('helperReady'))}</span></div></div><div class="row"><div class="row-copy"><span class="row-title">${t('battery')}</span><span class="row-detail">${t('batteryValue')}</span></div></div><div class="row"><div class="row-copy"><span class="row-title">${t('thermal')}</span><span class="row-detail">${t('thermalValue')}</span></div></div></div></div>`;
+      if (state.tab === 'about') html = `<h2>${t('about')}</h2><div class="group"><div class="group-box"><div class="row"><div class="row-copy"><span class="row-title">${t('version')}</span></div><span>1.0 (1)</span></div><div class="row"><div class="row-copy"><span class="row-title">${t('compatibility')}</span></div><span>macOS 26</span></div><div class="row"><div class="row-copy"><span class="row-title">${t('experimental')}</span><span class="row-detail">${t('experimentalValue')}</span></div></div></div></div>`;
+      $('settingsContent').innerHTML = html;
+    }
+    function render() {
+      document.documentElement.dataset.theme = state.theme;
+      document.documentElement.lang = state.lang === 'zh' ? 'zh-Hans' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
+      $('langZh').classList.toggle('active', state.lang==='zh'); $('langEn').classList.toggle('active', state.lang==='en');
+      $('themeLight').classList.toggle('active', state.theme==='light'); $('themeDark').classList.toggle('active', state.theme==='dark');
+      $('wakeSwitch').classList.toggle('on', state.awake); $('wakeSwitch').setAttribute('aria-checked', state.awake);
+      $('statusSymbol').classList.toggle('active', state.awake); $('statusSymbol').textContent = state.awake ? '☀︎' : '☾';
+      $('statusText').textContent = state.awake ? (state.minutes===0?t('active')+' · '+t('unlimited'):`${t('remaining')} ${durationLabel(state.minutes)}`) : t('off');
+      $('statusText').classList.toggle('urgent', state.awake && state.minutes > 0 && state.minutes <= 5);
+      const lidAvailable = state.device==='laptop' && state.awake;
+      $('lidSwitch').disabled = !lidAvailable; $('lidSwitch').classList.toggle('on', state.lid); $('lidSwitch').setAttribute('aria-checked', state.lid);
+      $('lidDetail').textContent = state.device==='desktop' ? t('noLid') : (!state.awake ? t('enableFirst') : (state.lid?t('lidActive'):t('lidReady')));
+      $('notice').hidden = !state.lid;
+      const time = state.awake ? (state.minutes===0?t('unlimited'):durationLabel(state.minutes)) : t('off');
+      $('smallIcon').textContent = $('mediumIcon').textContent = state.awake ? '☀︎' : '☾'; $('smallTime').textContent = $('mediumTime').textContent = time;
+      $('smallSub').textContent = state.awake ? t('active') : t('systemSettings'); $('mediumSub').textContent = state.device==='desktop'?t('noLid'):(state.lid?t('lidActive'):t('noAdvanced'));
+      $('smallAction').textContent = state.awake?t('stop'):t('on'); $('smallAction').classList.toggle('stop', state.awake); $('mediumStop').textContent = state.awake?t('stop'):t('on');
+      document.querySelectorAll('[data-minutes]').forEach(btn => btn.textContent = durationLabel(Number(btn.dataset.minutes)));
+      document.querySelectorAll('.side-item').forEach(btn => btn.classList.toggle('active', btn.dataset.tab===state.tab));
+      renderSettings();
+    }
+    function setAwake(value) { state.awake = value; if (!value) state.lid = false; render(); }
+    $('wakeSwitch').onclick = () => setAwake(!state.awake); $('smallAction').onclick = () => setAwake(!state.awake); $('mediumStop').onclick = () => setAwake(!state.awake);
+    $('durationSelect').onchange = e => { state.minutes = Number(e.target.value); render(); };
+    $('lidSwitch').onclick = () => { if (!state.lid) $('safetyModal').classList.add('open'); else { state.lid=false; render(); } };
+    $('modalCancel').onclick = () => $('safetyModal').classList.remove('open'); $('modalContinue').onclick = () => { state.lid=true; $('safetyModal').classList.remove('open'); render(); };
+    $('deviceSelect').onchange = e => { state.device=e.target.value; if (state.device==='desktop') state.lid=false; render(); };
+    $('langZh').onclick = () => { state.lang='zh'; render(); }; $('langEn').onclick = () => { state.lang='en'; render(); };
+    $('themeLight').onclick = () => { state.theme='light'; render(); }; $('themeDark').onclick = () => { state.theme='dark'; render(); };
+    $('stopQuit').onclick = () => setAwake(false); $('openSettings').onclick = () => { state.tab='general'; render(); $('settingsContent').focus(); };
+    document.querySelectorAll('.side-item').forEach(btn => btn.onclick = () => { state.tab=btn.dataset.tab; render(); });
+    document.querySelectorAll('[data-minutes]').forEach(btn => btn.onclick = () => { state.minutes=Number(btn.dataset.minutes); setAwake(true); });
+    render();
+  </script>
+</body>
+</html>
