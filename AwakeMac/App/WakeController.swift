@@ -37,6 +37,7 @@ final class WakeController: NSObject, ObservableObject {
     private var hasStarted = false
     private static let loginItemConfiguredKey = "didConfigureLoginItem"
     private static let briefAwayDefaultMigrationKey = "didMigrateQuickAwayDefaultToBriefAway"
+    private static let lowestBrightnessDefaultMigrationKey = "didMigrateQuickAwayBrightnessToLowestLevel"
 
     init(
         store: SharedStateStore = SharedStateStore(),
@@ -63,6 +64,10 @@ final class WakeController: NSObject, ObservableObject {
         if !preferences.bool(forKey: Self.briefAwayDefaultMigrationKey) {
             self.state.quickAway.copyStyle = .briefAway
             preferences.set(true, forKey: Self.briefAwayDefaultMigrationKey)
+        }
+        if !preferences.bool(forKey: Self.lowestBrightnessDefaultMigrationKey) {
+            self.state.quickAway.setBrightnessLevel(1)
+            preferences.set(true, forKey: Self.lowestBrightnessDefaultMigrationKey)
         }
     }
 

@@ -99,6 +99,27 @@ final class AutomationAndQuickAwayTests: XCTestCase {
         XCTAssertEqual(fixture.controller.state.quickAway.copyStyle, .cyberCare)
     }
 
+    func testExistingInstallationMigratesQuickAwayBrightnessToLowestLevel() {
+        let suite = "AwakeMacTests.\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suite)!
+        let store = AwakeMac.SharedStateStore(suiteName: suite)
+        var state = AwakeMac.WakeState()
+        state.quickAway.setBrightnessLevel(8)
+        store.saveState(state)
+
+        let controller = WakeController(
+            store: store,
+            loginItemService: AutomationTestLoginItemService(),
+            runningAppDetector: TestApplicationDetector(),
+            brightnessService: TestBrightnessService(),
+            preferences: defaults
+        )
+
+        XCTAssertEqual(controller.state.quickAway.brightnessLevel, 1)
+        XCTAssertEqual(controller.state.quickAway.brightnessPercent, 10)
+        UserDefaults().removePersistentDomain(forName: suite)
+    }
+
     private func makeFixture() -> AutomationFixture {
         let suite = "AwakeMacTests.\(UUID().uuidString)"
         let detector = TestApplicationDetector()

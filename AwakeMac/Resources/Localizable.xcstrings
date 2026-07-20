@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "about.description" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Keeps your Mac awake without changing its original idle-sleep settings." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "在不修改 Mac 原有空闲睡眠设置的前提下保持唤醒。" } } } },
-    "about.version" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Version 1.2.3 (14)" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "版本 1.2.3 (14)" } } } },
+    "about.version" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Version 1.2.4 (15)" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "版本 1.2.4 (15)" } } } },
     "common.apply" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Apply" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "应用" } } } },
     "common.cancel" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "取消" } } } },
     "common.ok" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "OK" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "好" } } } },
