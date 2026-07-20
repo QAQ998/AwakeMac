@@ -68,7 +68,12 @@ struct MenuBarContentView: View {
         .alert(
             L10n.text("error.title", language: language),
             isPresented: Binding(
-                get: { controller.lastError != nil },
+                get: {
+                    controller.lastError != nil
+                        && AppWindowCoordinator.shouldPresentSharedError(
+                            on: presentation == .menuBar ? .menuBar : .mainControl
+                        )
+                },
                 set: { if !$0 { controller.lastError = nil } }
             )
         ) {

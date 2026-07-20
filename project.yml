@@ -9,8 +9,8 @@ settings:
   base:
     SWIFT_VERSION: "6.0"
     MACOSX_DEPLOYMENT_TARGET: "14.0"
-    CURRENT_PROJECT_VERSION: "12"
-    MARKETING_VERSION: "1.2.1"
+    CURRENT_PROJECT_VERSION: "13"
+    MARKETING_VERSION: "1.2.2"
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: ""
     ENABLE_USER_SCRIPT_SANDBOXING: NO
@@ -36,8 +36,8 @@ targets:
       properties:
         CFBundleDisplayName: AwakeMac
         CFBundleName: AwakeMac
-        CFBundleShortVersionString: "1.2.1"
-        CFBundleVersion: "12"
+        CFBundleShortVersionString: "1.2.2"
+        CFBundleVersion: "13"
         LSUIElement: true
         NSHumanReadableCopyright: "Copyright © 2026 QAQ998"
     entitlements:
@@ -60,6 +60,9 @@ targets:
           mkdir -p "$HELPER_DIR"
           ditto "$BUILT_PRODUCTS_DIR/PowerHelper" "$HELPER_DIR/PowerHelper"
           ditto "$SRCROOT/PowerHelper/com.zhuhai.AwakeMac.PowerHelper.plist" "$HELPER_DIR/com.zhuhai.AwakeMac.PowerHelper.plist"
+          if [[ "${CODE_SIGNING_ALLOWED:-NO}" == "YES" && -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" ]]; then
+            /usr/bin/codesign --force --sign "$EXPANDED_CODE_SIGN_IDENTITY" "$HELPER_DIR/PowerHelper"
+          fi
         inputFiles:
           - $(BUILT_PRODUCTS_DIR)/PowerHelper
           - $(SRCROOT)/PowerHelper/com.zhuhai.AwakeMac.PowerHelper.plist
@@ -81,8 +84,8 @@ targets:
       path: AwakeMacWidget/Info.plist
       properties:
         CFBundleDisplayName: AwakeMac Widget
-        CFBundleShortVersionString: "1.2.1"
-        CFBundleVersion: "12"
+        CFBundleShortVersionString: "1.2.2"
+        CFBundleVersion: "13"
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:

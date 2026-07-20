@@ -41,7 +41,10 @@ struct SettingsView: View {
         .alert(
             L10n.text("error.title", language: language),
             isPresented: Binding(
-                get: { controller.lastError != nil },
+                get: {
+                    controller.lastError != nil
+                        && AppWindowCoordinator.shouldPresentSharedError(on: .settings)
+                },
                 set: { if !$0 { controller.lastError = nil } }
             )
         ) {

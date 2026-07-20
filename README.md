@@ -4,12 +4,13 @@ AwakeMac is a native macOS 14–26 menu bar utility that keeps the display and s
 
 The direct-launch build opens a compact native control window when double-clicked and also remains available from the menu bar. Closing the control window does not quit the utility; double-clicking the app again restores the window.
 
-Version 1.2.1 refines the Quick Break experience:
+Version 1.2.2 refines the Quick Break experience and fixes local-helper packaging:
 
 - All semantic text styles render one system size larger while continuing to respect the user's accessibility text-size preference.
 - Duration uses common presets and brightness uses a native slider with familiar sun controls.
 - Quick Break temporarily replaces the current session, lowers supported displays to a configured 1/64–64/64 brightness step, and restores brightness when the session ends. Its UI copy can switch between “Field Research / 水产调研” and “Cyber Cover / 赛博托管”. Hover the info icon in Settings for an in-app explanation.
 - App Link is temporarily hidden while its interaction is refined. A previously enabled App Link preference is disabled on launch so no invisible automation remains active.
+- Local release packaging now signs the embedded PowerHelper explicitly before sealing the widget and app, preventing first-use helper installation from being rejected as unsigned.
 
 ## Open and build
 
@@ -28,6 +29,14 @@ zsh Scripts/build-debug.sh
 ```
 
 The script writes build products to `.derivedData` inside the project.
+
+After an unsigned Release build, create a locally runnable ad-hoc signed bundle with:
+
+```bash
+zsh Scripts/sign-local-app.sh .derivedData/Build/Products/Release/AwakeMac.app
+```
+
+The signing script verifies the standalone PowerHelper as well as the complete app bundle before returning success.
 
 ## Direct local use
 
