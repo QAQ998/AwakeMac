@@ -4,11 +4,11 @@ AwakeMac is a native macOS 14–26 menu bar utility that keeps the display and s
 
 The direct-launch build opens a compact native control window when double-clicked and also remains available from the menu bar. Closing the control window does not quit the utility; double-clicking the app again restores the window.
 
-Version 1.2.4 refines the Quick Break experience and fixes local-helper packaging:
+Version 1.2.5 refines the Quick Break experience and fixes local-helper packaging:
 
 - All semantic text styles render one system size larger while continuing to respect the user's accessibility text-size preference.
 - Duration uses common presets and brightness uses a native slider with familiar sun controls.
-- Quick Break temporarily replaces the current session, lowers supported displays to one of ten brightness levels, and restores brightness when the session ends. The lowest level (10%) is the default for new and upgraded installations. Its default copy style is the neutral “Step Away / 离开一会”; “Field Research / 水产调研” and “Cyber Cover / 赛博托管” remain optional. Hover the info icons in Settings for in-app explanations.
+- Quick Break temporarily replaces the current session, lowers supported displays to one of the system's full 64 brightness steps, and restores brightness when the session ends. The lowest system step is the default for new and upgraded installations. Settings keeps all 64 selectable values while drawing only ten visual scale marks, and all UI surfaces format the value as an integer percentage. Its default copy style is the neutral “Step Away / 离开一会”; “Field Research / 水产调研” and “Cyber Cover / 赛博托管” remain optional. Hover the info icons in Settings for in-app explanations.
 - Hardware settings use a readable Apple product name and no longer expose raw IOKit diagnostics.
 - App Link is temporarily hidden while its interaction is refined. A previously enabled App Link preference is disabled on launch so no invisible automation remains active.
 - Local release packaging now signs the embedded PowerHelper explicitly before sealing the widget and app, preventing first-use helper installation from being rejected as unsigned.

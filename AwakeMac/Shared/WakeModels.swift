@@ -46,32 +46,18 @@ struct AppAutomationSettings: Codable, Equatable, Sendable {
 
 struct QuickAwaySettings: Codable, Equatable, Sendable {
     var durationMinutes = 30
-    var brightnessStep = 7
+    var brightnessStep = 1
     var copyStyle = QuickAwayCopyStyle.briefAway
 
-    /// Ten user-facing levels, approximately 10% through 100% on the
-    /// existing 64-step display API.
-    static let brightnessSteps = [7, 14, 20, 26, 33, 39, 45, 51, 58, 64]
-
-    var brightnessLevel: Int {
-        let nearestIndex = Self.brightnessSteps.indices.min {
-            abs(Self.brightnessSteps[$0] - brightnessStep)
-                < abs(Self.brightnessSteps[$1] - brightnessStep)
-        } ?? 0
-        return nearestIndex + 1
-    }
-
-    var brightnessPercent: Int { brightnessLevel * 10 }
-
-    mutating func setBrightnessLevel(_ level: Int) {
-        let index = min(Self.brightnessSteps.count, max(1, level)) - 1
-        brightnessStep = Self.brightnessSteps[index]
+    /// The display API keeps all 64 native steps. UI surfaces show an integer
+    /// percentage while preserving every selectable underlying step.
+    var brightnessPercent: Int {
+        Int((Double(brightnessStep) / 64.0 * 100.0).rounded())
     }
 
     mutating func clamp() {
         durationMinutes = min(240, max(5, durationMinutes))
         brightnessStep = min(64, max(1, brightnessStep))
-        setBrightnessLevel(brightnessLevel)
     }
 }
 

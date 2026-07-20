@@ -178,16 +178,28 @@ struct SettingsView: View {
                         Image(systemName: "sun.min")
                             .foregroundStyle(.secondary)
                             .accessibilityHidden(true)
-                        Slider(
-                            value: Binding(
-                                get: { Double(controller.state.quickAway.brightnessLevel) },
-                                set: { controller.setQuickAwayBrightnessLevel(Int($0.rounded())) }
-                            ),
-                            in: 1...10,
-                            step: 1
-                        )
+                        VStack(spacing: 2) {
+                            Slider(
+                                value: Binding(
+                                    get: { Double(controller.state.quickAway.brightnessStep) },
+                                    set: { controller.setQuickAwayBrightness(step: Int($0.rounded())) }
+                                ),
+                                in: 1...64
+                            )
+                            .controlSize(.large)
+
+                            HStack(spacing: 0) {
+                                ForEach(0..<10, id: \.self) { index in
+                                    Circle()
+                                        .fill(.tertiary)
+                                        .frame(width: 2.5, height: 2.5)
+                                    if index < 9 { Spacer(minLength: 0) }
+                                }
+                            }
+                            .padding(.horizontal, 7)
+                            .accessibilityHidden(true)
+                        }
                         .frame(minWidth: 150, idealWidth: 210, maxWidth: 260)
-                        .controlSize(.large)
                         Image(systemName: "sun.max.fill")
                             .foregroundStyle(.secondary)
                             .accessibilityHidden(true)

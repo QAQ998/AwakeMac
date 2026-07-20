@@ -41,17 +41,24 @@ final class WakeModelsTests: XCTestCase {
         XCTAssertEqual(state.quickAway, QuickAwaySettings())
     }
 
-    func testQuickAwayDefaultsToNeutralCopyAndTenPercentBrightness() {
+    func testQuickAwayDefaultsToNeutralCopyAndLowestSystemBrightnessStep() {
         let settings = QuickAwaySettings()
 
         XCTAssertEqual(settings.copyStyle, .briefAway)
-        XCTAssertEqual(settings.brightnessLevel, 1)
-        XCTAssertEqual(settings.brightnessPercent, 10)
+        XCTAssertEqual(settings.brightnessStep, 1)
+        XCTAssertEqual(settings.brightnessPercent, 2)
     }
 
-    func testQuickAwayBrightnessUsesTenDiscreteLevels() {
+    func testQuickAwayBrightnessKeepsAll64StepsAndFormatsAsPercent() {
         var settings = QuickAwaySettings()
-        settings.setBrightnessLevel(10)
+        settings.brightnessStep = 32
+        settings.clamp()
+
+        XCTAssertEqual(settings.brightnessStep, 32)
+        XCTAssertEqual(settings.brightnessPercent, 50)
+
+        settings.brightnessStep = 64
+        settings.clamp()
 
         XCTAssertEqual(settings.brightnessStep, 64)
         XCTAssertEqual(settings.brightnessPercent, 100)

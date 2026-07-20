@@ -76,7 +76,7 @@ final class AutomationAndQuickAwayTests: XCTestCase {
         fixture.controller.startQuickAway()
 
         XCTAssertEqual(fixture.controller.state.sessionSource, .quickAway)
-        XCTAssertEqual(fixture.brightness.lastAppliedStep, 7)
+        XCTAssertEqual(fixture.brightness.lastAppliedStep, 1)
         XCTAssertEqual(fixture.brightness.applyCount, 1)
 
         fixture.controller.endQuickAway()
@@ -94,8 +94,8 @@ final class AutomationAndQuickAwayTests: XCTestCase {
         fixture.controller.setQuickAwayCopyStyle(.cyberCare)
 
         XCTAssertEqual(fixture.controller.state.quickAway.durationMinutes, 240)
-        XCTAssertEqual(fixture.controller.state.quickAway.brightnessStep, 7)
-        XCTAssertEqual(fixture.controller.state.quickAway.brightnessPercent, 10)
+        XCTAssertEqual(fixture.controller.state.quickAway.brightnessStep, 1)
+        XCTAssertEqual(fixture.controller.state.quickAway.brightnessPercent, 2)
         XCTAssertEqual(fixture.controller.state.quickAway.copyStyle, .cyberCare)
     }
 
@@ -104,7 +104,7 @@ final class AutomationAndQuickAwayTests: XCTestCase {
         let defaults = UserDefaults(suiteName: suite)!
         let store = AwakeMac.SharedStateStore(suiteName: suite)
         var state = AwakeMac.WakeState()
-        state.quickAway.setBrightnessLevel(8)
+        state.quickAway.brightnessStep = 50
         store.saveState(state)
 
         let controller = WakeController(
@@ -115,8 +115,8 @@ final class AutomationAndQuickAwayTests: XCTestCase {
             preferences: defaults
         )
 
-        XCTAssertEqual(controller.state.quickAway.brightnessLevel, 1)
-        XCTAssertEqual(controller.state.quickAway.brightnessPercent, 10)
+        XCTAssertEqual(controller.state.quickAway.brightnessStep, 1)
+        XCTAssertEqual(controller.state.quickAway.brightnessPercent, 2)
         UserDefaults().removePersistentDomain(forName: suite)
     }
 
