@@ -95,7 +95,7 @@ final class AutomationAndQuickAwayTests: XCTestCase {
 
         XCTAssertEqual(fixture.controller.state.quickAway.durationMinutes, 240)
         XCTAssertEqual(fixture.controller.state.quickAway.brightnessStep, 1)
-        XCTAssertEqual(fixture.controller.state.quickAway.brightnessPercent, 2)
+        XCTAssertEqual(fixture.controller.state.quickAway.brightnessPercent, 1)
         XCTAssertEqual(fixture.controller.state.quickAway.copyStyle, .cyberCare)
     }
 
@@ -116,7 +116,7 @@ final class AutomationAndQuickAwayTests: XCTestCase {
         )
 
         XCTAssertEqual(controller.state.quickAway.brightnessStep, 1)
-        XCTAssertEqual(controller.state.quickAway.brightnessPercent, 2)
+        XCTAssertEqual(controller.state.quickAway.brightnessPercent, 1)
         UserDefaults().removePersistentDomain(forName: suite)
     }
 

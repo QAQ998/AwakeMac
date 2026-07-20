@@ -46,7 +46,7 @@ final class WakeModelsTests: XCTestCase {
 
         XCTAssertEqual(settings.copyStyle, .briefAway)
         XCTAssertEqual(settings.brightnessStep, 1)
-        XCTAssertEqual(settings.brightnessPercent, 2)
+        XCTAssertEqual(settings.brightnessPercent, 1)
     }
 
     func testQuickAwayBrightnessKeepsAll64StepsAndFormatsAsPercent() {

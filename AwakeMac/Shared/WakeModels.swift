@@ -52,7 +52,8 @@ struct QuickAwaySettings: Codable, Equatable, Sendable {
     /// The display API keeps all 64 native steps. UI surfaces show an integer
     /// percentage while preserving every selectable underlying step.
     var brightnessPercent: Int {
-        Int((Double(brightnessStep) / 64.0 * 100.0).rounded())
+        if brightnessStep == 1 { return 1 }
+        return Int((Double(brightnessStep) / 64.0 * 100.0).rounded())
     }
 
     mutating func clamp() {
